@@ -14,11 +14,30 @@
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
-              </ul>
+            </ul>
         </nav>
         <main>
             <h1 class="page-title">THIS IS A CONTACT INFORMATION AREA</h1>
+            
+            <!-- Contact Form -->
+            <form id="contact-form" action="#" method="post">
+                <!-- Name Input -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                
+                <!-- Email Input -->
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                
+                <!-- Message Input -->
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea><br><br>
+                
+                <!-- Submit Button -->
+                <input type="submit" value="Submit">
+            </form>
         </main>
+        
         <footer class="footer">© 2023 my website :) | All Rights Reserved</footer>
     </body>
 </html>
