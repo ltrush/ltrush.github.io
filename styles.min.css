@@ -38,8 +38,15 @@ main {
   color: white;
   padding: 10px 20px;
 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s ease;
+
   /* Debug border */
   /* border: solid red; */
+}
+
+.navbar:hover {
+  background-color: #444;
 }
 
 .nav-list {
@@ -56,11 +63,12 @@ main {
   margin: 0 12px;
   text-decoration: none;
   letter-spacing: 1px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .navbar a:hover {
   color: #ffa500;
+  transform: scale(1.1);
 }
 
 /* CSS for page footer */
@@ -77,4 +85,10 @@ main {
   height: 2.5rem;
   padding: 10px 0;
   margin-top: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 0; 
+  font-size: 0.9rem;
 }
