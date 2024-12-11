@@ -6,29 +6,39 @@
         <link rel="stylesheet" href="styles.min.css" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     </head>
-  <body>
-    <nav class="navbar">
-        <h1 class="logo">
-            <a href="index.html">Luke Trusheim</a>
-        </h1>
-        <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="resume.html">Resume</a></li>
-            <!-- <li><a href="blog.html">Blog</a></li> -->
-            <!-- <li><a href="contact.html">Contact</a></li> -->
-        </ul>
-    </nav>
-    <main>
-        <h1 class="page-title">Welcome to Luke's website!</h1>
-        <div class="about">
-            <div class="about-image"><img src="images/headshot.JPG" alt="Headshot of Luke"></div>
-            <div class="about text">
-                <p>Hi, my name is <strong>Luke</strong> (he/him), and I'm from just north of San Francisco (Marin county).</p>
-                <p>I'm a third year computer engineering major. I love to read (currently reading <em>Three Body Problem</em> series) and play video games (R6 and Valorant even though R6 causes me lots of pain). To stay active, I like to play basketball at the rec or go on a walk around my neighborhood. One day, I would love to become a film director. <strong>Thank you for taking a look at my website!</strong></p>
+    <body>
+        <nav class="navbar">
+            <h1 class="logo">
+                <a href="index.html">Luke Trusheim</a>
+            </h1>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <!-- <li><a href="blog.html">Blog</a></li> -->
+                <!-- <li><a href="contact.html">Contact</a></li> -->
+            </ul>
+        </nav>
+        <main>
+            <h1 class="page-title">Welcome to Luke's website!</h1>
+            <div class="about">
+                <div class="about-image"><img src="images/headshot.JPG" alt="Headshot of Luke"></div>
+                <div class="about text">
+                    <p>Hi, my name is <strong>Luke</strong> (he/him), and I'm from just north of San Francisco (Marin county).</p>
+                    <p>I'm a third year computer engineering major. I love to read (currently reading <em>Three Body Problem</em> series) and play video games (R6 and Valorant even though R6 causes me lots of pain). To stay active, I like to play basketball at the rec or go on a walk around my neighborhood. One day, I would love to become a film director. <strong>Thank you for taking a look at my website!</strong></p>
+                </div>
             </div>
-    </div>
-    </main>
-    <footer class="footer">© 2023 my website :) | All Rights Reserved</footer>
-</body>
+        </main>
+        <!-- uses javascript to inject my footer.html file here -->
+        <div class="footer-placeholder"></div>
+        <script> 
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementsByClassName('footer-placeholder')[0].innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        </script>
+    </body>
 </html>
+<script src="scripts.js"></script>

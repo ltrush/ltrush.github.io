@@ -22,22 +22,36 @@
         <main>
             <h1 class="page-title">Portfolio</h1>
             <div class="project">
-                <a href="index.html"><img src="images/Shortcut Logo Icon.png" alt="Apple Shortcuts logo"></a>
-                <a href="index.html"><img src="images/temporary media shortcut icon.png" alt="Icon for Temporary Media shortcut"></a>
-                <a href="Download Items/Temporary Media.shortcut" download="Temporary Media Apple Shortcut">Download link</a>
+                <a href="index.html"><img class="project-image" src="images/Shortcut Logo Icon.png" alt="Apple Shortcuts logo"></a>
+                <a href="index.html"><img class="project-image" src="images/temporary media shortcut icon.png" alt="Icon for Temporary Media shortcut"></a>
                 <div class="project-details">
                     <p class="project-name">Temporary Media</p>
-                    <p class="project-description">An Apple shortcut I built to take and send photos and videos you don't want around forever.</p>
+                    <p class="project-description">An Apple shortcut I built to take and send photos and videos that you don't want around forever.</p>
+                </div>
+                <div>
+                    <button class="download-button" data-file="Download Items/Temporary Media.shortcut" data-download="Temporary Media Apple Shortcut">
+                        Download Apple Shortcut
+                    </button>
                 </div>
             </div>
             <div class="project">
-                <a href="index.html"><img src="images/website.png" alt="Image representing a website"></a>
+                <a href="index.html"><img class="project-image" src="images/website.png" alt="Image representing a website"></a>
                 <div class="project-details">
                     <p class="project-name">Personal Website</p>
-                    <p class="project-description">A website I built using HTML, JavaScript, and CSS as a project for Hack4Impact.</p>
+                    <p class="project-description">A website I built using HTML and CSS.</p>
                 </div>
             </div> 
         </main>
-        <footer class="footer">© 2023 my website :) | All Rights Reserved</footer>
+        <div class="footer-placeholder"></div>
+        <script> 
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementsByClassName('footer-placeholder')[0].innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        </script>
     </body>
 </html>
+<script src="scripts.js"></script>
+
