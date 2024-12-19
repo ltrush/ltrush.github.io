@@ -39,7 +39,7 @@ h1.page-title,
     text-align: center; 
 }
 
-.download-button {
+button {
   padding: 10px 20px;
   background-color: #f9a826;
   color: white;
@@ -50,7 +50,7 @@ h1.page-title,
   transition: background-color 0.3s ease;
 }
 
-.download-button:hover {
+button:hover {
   background-color: #d7881d;
 }
 
@@ -58,9 +58,8 @@ h1.page-title,
 img {
   max-width: 100%;
   height: auto;
-  margin: 20px 0;
+  margin: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 img:hover {
@@ -128,6 +127,12 @@ img:hover {
   transform: scale(1.1);
 }
 
+/* Index/Homepage Section */
+
+.about img {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 /* Resume Section */
 
 .resume {
@@ -145,16 +150,28 @@ img:hover {
 
 
 /* Portfolio Section */
-.project {
+.portfolio {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto auto;
+  gap: 2rem;
+  padding: 2rem;
+}
+.project {
+  /* display: grid; */
+  /* grid-template-columns: repeat(2, 1fr); */
+  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+  gap: 10px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
+  /* grid-template-rows: auto auto; */
+  margin-bottom: 30px;
 }
 
 .project:hover {
@@ -165,8 +182,7 @@ img:hover {
 .project img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: none;
+  display: block;
 }
 
 .project img:hover {
@@ -174,7 +190,7 @@ img:hover {
 }
 
 .project-details {
-  margin-top: 10px;
+  padding-inline: 10px;  /* padding-inline is equivlent to setting padding-left and padding-right*/
 }
 
 .project-name {
@@ -188,8 +204,17 @@ img:hover {
   color: #666;
 }
 
+.hidden {
+  display: none;
+}
 
-/* CSS for page footer */
+.project-more-info {
+  padding: 10px;
+  background-color: #fff;
+}
+
+
+/* Footer */
 
 .footer {
   display: flex;
@@ -221,9 +246,7 @@ footer p {
   .footer {
     text-align: center;
   }
-}
 
-@media (max-width: 768px) {
   .nav-list {
     flex-direction: column;
     align-items: right;
@@ -234,7 +257,8 @@ footer p {
     justify-content: center;
   }
 
-  .project {
+  .portfolio {
     grid-template-columns: 1fr; /* Single column layout for small screens */
   }
 }
+

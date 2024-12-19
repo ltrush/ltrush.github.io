@@ -21,26 +21,41 @@
         </nav>
         <main>
             <h1 class="page-title">Portfolio (WIP)</h1>
-            <div class="project">
-                <a href="index.html"><img class="project-image" src="images/Shortcut Logo Icon.png" alt="Apple Shortcuts logo"></a>
-                <a href="index.html"><img class="project-image" src="images/temporary media shortcut icon.png" alt="Icon for Temporary Media shortcut"></a>
-                <div class="project-details">
-                    <p class="project-name">Temporary Media</p>
-                    <p class="project-description">An Apple shortcut I built to take and send photos and videos that you don't want around forever.</p>
+            <div class="portfolio">
+                <div class="project">
+                    <a><img class="project-image" src="images/customdefinitions logo.png" alt="Custom CustomDefinitions logo"></a>
+                    <div class="project-details">
+                        <p class="project-name">DTMF Decoder in Python</p>
+                        <p class="project-description">A dual-tone multi-frequency decoder I built in Python using integer-based digital signal processing.</p>
+                    </div>
                 </div>
-                <div>
-                    <button class="download-button" data-file="Download Items/Temporary Media.shortcut" data-download="Temporary Media Apple Shortcut">
-                        Download Apple Shortcut
-                    </button>
+                <div class="project">
+                    <a href="customdefinitions.etsy.com"><img class="project-image" src="images/customdefinitions logo.png" alt="Custom CustomDefinitions logo"></a>
+                    <div class="project-details">
+                        <p class="project-name">CustomDefinitions Etsy Shop</p>
+                        <p class="project-description">A digital shop where I sell custom-made wall decor.</p>
+                        <a href="customdefinitions.etsy.com"><button class="link-button">Visit Etsy Store</button></a>
+                    </div>
                 </div>
+                <div class="project" onclick="toggleAccordion('temp-media-shortcut')">
+                    <a><img class="project-image" src="images/Shortcut Logo Icon.png" alt="Apple Shortcuts logo"></a>
+                    <div class="project-details">
+                        <p class="project-name">Temporary Media Apple Shortcut</p>
+                        <p class="project-description">An Apple shortcut I built to take and send photos and videos that you don't want around forever.</p>
+                        <button class="download-button" data-file="Download Items/Temporary Media.shortcut" data-download="Temporary Media Apple Shortcut">Download Apple Shortcut</button>
+                        <div id="temp-media-shortcut-more-info" class="project-more-info hidden">
+                            <p>Detailed information about the project.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <a href="index.html"><img class="project-image" src="images/website.png" alt="Image representing a website"></a>
+                    <div class="project-details">
+                        <p class="project-name">Personal Website</p>
+                        <p class="project-description">A website I built using HTML and CSS.</p>
+                    </div>
+                </div> 
             </div>
-            <div class="project">
-                <a href="index.html"><img class="project-image" src="images/website.png" alt="Image representing a website"></a>
-                <div class="project-details">
-                    <p class="project-name">Personal Website</p>
-                    <p class="project-description">A website I built using HTML and CSS.</p>
-                </div>
-            </div> 
         </main>
         <div class="footer-placeholder"></div>
         <script> 

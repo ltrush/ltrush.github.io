@@ -11,3 +11,12 @@ document.querySelectorAll('.download-button').forEach(button => {
         }
     });
 });
+
+function toggleAccordion(projectId) {
+    const details = document.getElementById(projectId + '-more-info');
+    if (details.classList.contains('hidden')) {
+      details.classList.remove('hidden');
+    } else {
+      details.classList.add('hidden');
+    }
+  }
