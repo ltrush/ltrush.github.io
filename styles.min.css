@@ -141,14 +141,6 @@ img:hover {
   padding: 20px;
 }
 
-.entry,
-.section,
-.skill-list,
-.course-list {
-    text-align: left;
-}
-
-
 /* Portfolio Section */
 .portfolio {
   display: grid;
