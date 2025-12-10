@@ -4,7 +4,7 @@
         <title>Luke's Website</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles.min.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar">
@@ -16,28 +16,49 @@
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <!-- <li><a href="blog.html">Blog</a></li> -->
-                <!-- <li><a href="contact.html">Contact</a></li> -->
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <main>
             <section class="welcome-section">
-                <h1 class="page-title">Welcome to Luke's Website!</h1>
+                <div class="welcome-inner">
+                    <span class="eyebrow">Computer Engineer</span>
+                    <h1 class="page-title">Building systems where hardware and software meet.</h1>
+                    <p class="section-lead">
+                        I’m focused on embedded systems, firmware, and hardware design.
+                        I love tough problems, creative solutions, and projects that push me past what I thought I could do.
+                        Here’s a snapshot of what I’m working on and where I’m headed.
+                    </p>
+                    <div class="cta-row">
+                        <a class="button link-button" href="portfolio.html">View portfolio</a>
+                        <a class="button ghost-button" href="resume.html">Download resume</a>
+                        <span class="pill">Bay Area & San Luis Obispo</span>
+                    </div>
+                </div>
             </section>
             <section class="about-section">
                 <div class="about-content">
                     <div class="about-text">
-                        <h3>Hi, my name is Luke, and I'm from the Bay Area.</h3>
+                        <h3>Hello! I'm Luke.</h3>
                         <p>
-                            I'm a fourth-year computer engineering major at California Polytechnic University in San Luis Obispo.
-                            I'm passionate about computer architecture, embedded systems, software engineering, and machine learning. I love solving 
-                            problems and strive to exceed expectations. <strong>I am actively looking for a job for next year.</strong> Thanks for visiting my site!
+                            I'm a fourth-year computer engineering major at Cal Poly. I'm passionate about computer architecture, embedded systems,
+                            and machine learning. I'm especially interested in the intersection between AI and hardware.
                         </p>
-                        
+                        <p>
+                            <strong>I'm actively looking for a full-time role for next year.</strong> 
+                            If your work involves tough, low-level challenges, I’d like to be part of it.
+                        </p>
+                        <div class="cta-row">
+                            <span class="pill">Pipelined & cached RISC-V</span>
+                            <span class="pill">Low-level signal processing</span>
+                            <span class="pill">Rapid prototyping</span>
+                        </div>
                     </div>
                     <div class="about-image">
                         <img src="images/WERC_benchscale.jpg" alt="Group of students outside in front of research poster" />
                         <p class="image-caption">
-                            Participating in the 2025 WERC Environmental Design Contest with my team, presenting our bench-scale system (I’m on the far left)                  </p>
+                            Presenting our bench-scale system at the 2025 WERC Environmental Design Contest (I'm on the far left).
+                        </p>
                     </div>
                 </div>
             </section>

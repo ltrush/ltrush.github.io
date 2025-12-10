@@ -4,7 +4,7 @@
         <title>Portfolio</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles.min.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar">
@@ -16,17 +16,23 @@
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <!-- <li><a href="blog.html">Blog</a></li> -->
-                <!-- <li><a href="contact.html">Contact</a></li> -->
-              </ul>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </nav>
         <main>
-            <h1 class="page-title">Portfolio (WIP)</h1>
+            <h1 class="page-title">Projects & Proof-of-Concepts</h1>
+            <p class="section-lead">Selected work that shows how I approach hardware/software systems, from research-grade builds to weekend prototypes.</p>
             <div class="portfolio">
                 <div class="project">
                     <a><img class="project-image" src="images/IEEE_logo.png" alt="IEEE logo"></a>
                     <div class="project-details">
                         <p class="project-name">Sustainable Grid Stabilization Via Green Hydrogen Technologies</p>
                         <p class="project-description">An officially published IEEE paper documenting the work our team completed in the 2025 WERC Environmental Engineering Competition.</p>
+                        <div class="project-tags">
+                            <span class="tag">Multidisciplinary</span>
+                            <span class="tag">Experimental design</span>
+                            <span class="tag">Technical writing</span>
+                        </div>
                         <a href="https://ieeexplore.ieee.org/document/11143791" target="_blank"><button class="link-button">Visit Official IEEE</button></a>
                     </div>
                 </div>
@@ -43,6 +49,11 @@
                     <div class="project-details">
                         <p class="project-name">Pipelined and Cached RISC-V Processor</p>
                         <p class="project-description">A five-stage, pipelined and cached MCU capable of handling data/control hazards by stalling, forwarding, and flushing.</p>
+                        <div class="project-tags">
+                            <span class="tag">RISC-V</span>
+                            <span class="tag">FPGA</span>
+                            <span class="tag">SystemVerilog</span>
+                        </div>
                         <a href="https://github.com/luketrusheim/riscv-mcu" target="_blank"><button class="link-button">Visit Github Repo</button></a>
                     </div>
                 </div>
@@ -51,6 +62,11 @@
                     <div class="project-details">
                         <p class="project-name">DTMF Decoder in Python</p>
                         <p class="project-description">A dual-tone multi-frequency decoder coded in Python using integer-based digital signal processing.</p>
+                        <div class="project-tags">
+                            <span class="tag">DSP</span>
+                            <span class="tag">Signal processing</span>
+                            <span class="tag">Python</span>
+                        </div>
                         <a href="https://github.com/luketrusheim/dtmfdecoder" target="_blank"><button class="link-button">Visit Github Repo</button></a>
                     </div>
                 </div>
@@ -59,6 +75,11 @@
                     <div class="project-details">
                         <p class="project-name">Camp Polyhacks 2025</p>
                         <p class="project-description">A weekend long hackathon where our group presented an app to improve civic engagement in SLO. We won an award for best pitch!</p>
+                        <div class="project-tags">
+                            <span class="tag">Hackathon</span>
+                            <span class="tag">Pitching</span>
+                            <span class="tag">Rapid prototyping</span>
+                        </div>
                         <!-- <button class="download-button" data-file="Download Items/IEEE_Paper.pdf" data-download="IEEE Paper.pdf">Download Paper</button>                     -->
                     </div>
                 </div>
@@ -67,6 +88,11 @@
                     <div class="project-details">
                         <p class="project-name">CustomDefinitions Etsy Shop</p>
                         <p class="project-description">A digital shop where I sell custom-made wall decor.</p>
+                        <div class="project-tags">
+                            <span class="tag">Product</span>
+                            <span class="tag">Entrepreneurship</span>
+                            <span class="tag">Design</span>
+                        </div>
                         <a href="https://customdefinitions.etsy.com" target="_blank"><button class="link-button">Visit Etsy Store</button></a>
                     </div>
                 </div>
@@ -75,6 +101,10 @@
                     <div class="project-details">
                         <p class="project-name">Temporary Media Apple Shortcut</p>
                         <p class="project-description">An Apple shortcut to take and send photos and videos that you don't want around forever.</p>
+                        <div class="project-tags">
+                            <span class="tag">Automation</span>
+                            <span class="tag">Productivity</span>
+                        </div>
                         <button class="download-button" data-file="Download Items/Temporary Media.shortcut" data-download="Temporary Media Apple Shortcut">Download Apple Shortcut</button>
                         <div id="temp-media-shortcut-more-info" class="project-more-info hidden">
                             <p>Detailed information about the project.</p>
@@ -86,6 +116,10 @@
                     <div class="project-details">
                         <p class="project-name">Personal Website</p>
                         <p class="project-description">A website built using HTML, CSS, and JavaScript.</p>
+                        <div class="project-tags">
+                            <span class="tag">Web</span>
+                            <span class="tag">HTML/CSS/JS</span>
+                        </div>
                         <a href="index.html"><button class="link-button">Visit Homepage</button></a>
                     </div>
                 </div> 
@@ -103,4 +137,3 @@
     </body>
 </html>
 <script src="scripts.js"></script>
-
