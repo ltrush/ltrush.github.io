@@ -305,9 +305,8 @@ img {
 
 /* Portfolio Section */
 .portfolio {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  column-width: 300px;
+  column-gap: 20px;
 }
 
 .project {
@@ -320,6 +319,9 @@ img {
   box-shadow: var(--shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   align-content: start;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 20px;
 }
 
 .project:hover {
@@ -418,6 +420,8 @@ footer p {
   }
 
   .portfolio {
-    grid-template-columns: 1fr;
+    column-count: 1;
+    column-gap: 0;
+    column-width: 100%;
   }
 }
