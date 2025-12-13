@@ -57,6 +57,19 @@ h1.page-title,
   color: var(--muted);
 }
 
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.page-header .section-lead {
+  margin: 6px 0 0;
+}
+
 a {
   color: var(--accent);
 }
@@ -287,6 +300,8 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .resume-entry {
@@ -295,12 +310,17 @@ img {
   border-radius: 18px;
   padding: 18px;
   box-shadow: var(--shadow);
+  display: grid;
+  gap: 14px;
+  align-content: start;
 }
 
 .pdf {
   margin-top: 14px;
   border: 1px solid var(--border);
   border-radius: 14px;
+  width: 100%;
+  height: clamp(520px, 70vh, 900px);
 }
 
 /* Portfolio Section */
