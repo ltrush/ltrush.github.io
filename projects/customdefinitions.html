@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CustomDefinitions Etsy Shop | Portfolio</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../styles.min.css" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar">
+            <h1 class="logo">
+                <a href="../index.html">Luke Trusheim</a>
+            </h1>
+            <ul class="nav-list">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../portfolio.html">Portfolio</a></li>
+                <li><a href="../resume.html">Resume</a></li>
+                <!-- <li><a href="../blog.html">Blog</a></li> -->
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1 class="page-title">CustomDefinitions Etsy Shop</h1>
+            <p class="section-lead">A digital shop where I sell custom-made wall decor.</p>
+            <div class="project">
+                <img class="project-image" src="../images/customdefinitions logo.png" alt="CustomDefinitions logo">
+            </div>
+            <section class="case-section">
+                <h2>Role / Tools / Timeline</h2>
+                <ul>
+                    <li>Role: Shop owner and designer</li>
+                    <li>Tools: Graphic design software, Etsy storefront</li>
+                    <li>Timeline: Ongoing</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>What I Built</h2>
+                <ul>
+                    <li>Designed custom wall decor products for digital delivery</li>
+                    <li>Managed storefront listings, previews, and fulfillment</li>
+                    <li>Iterated on designs based on customer requests</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>Results</h2>
+                <ul>
+                    <li>N/A</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>Links</h2>
+                <div class="cta-row">
+                    <a href="https://customdefinitions.etsy.com" target="_blank"><button class="link-button">Visit Etsy Store</button></a>
+                </div>
+            </section>
+            <div class="cta-row">
+                <a href="../portfolio.html"><button class="link-button">Back to Portfolio</button></a>
+            </div>
+        </main>
+        <div class="footer-placeholder"></div>
+        <script>
+            fetch('../footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementsByClassName('footer-placeholder')[0].innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        </script>
+    </body>
+</html>
+<script src="../scripts.js"></script>

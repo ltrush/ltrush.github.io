@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reliable UDP Transfer | Portfolio</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../styles.min.css" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar">
+            <h1 class="logo">
+                <a href="../index.html">Luke Trusheim</a>
+            </h1>
+            <ul class="nav-list">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../portfolio.html">Portfolio</a></li>
+                <li><a href="../resume.html">Resume</a></li>
+                <!-- <li><a href="../blog.html">Blog</a></li> -->
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1 class="page-title">Reliable File Transfer Protocol Built On (Unreliable) UDP</h1>
+            <p class="section-lead">Built a reliable file transfer protocol on top of UDP using a Selective Reject sliding window. The project includes a client and forked server that handle packet loss, reordering, and corruption via checksums, cumulative ACKs (RR), targeted NACKs (SREJ), and an EOF/ACK teardown.</p>
+            <div class="project">
+                <img class="project-image" src="../images/Sliding-Window-Protocol.jpg" alt="Sliding window protocol diagram">
+            </div>
+            <section class="case-section">
+                <h2>Role / Tools / Timeline</h2>
+                <ul>
+                    <li>Role: Network protocol developer</li>
+                    <li>Tools: C, sockets, Wireshark debugging</li>
+                    <li>Timeline: Multi-week networking lab</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>What I Built</h2>
+                <ul>
+                    <li>Implemented Selective Reject sliding window with cumulative ACKs and targeted NACKs</li>
+                    <li>Added checksum verification, retransmission, and EOF/ACK teardown handling</li>
+                    <li>Tested against packet loss, reordering, and corruption scenarios</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>Results</h2>
+                <ul>
+                    <li>Achieved reliable transfers over intentionally lossy UDP setups</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>Links</h2>
+                <div class="cta-row">
+                    <a href="https://github.com/ltrush/udp-reliable-transfer" target="_blank"><button class="link-button">Visit Github Repo</button></a>
+                </div>
+            </section>
+            <div class="cta-row">
+                <a href="../portfolio.html"><button class="link-button">Back to Portfolio</button></a>
+            </div>
+        </main>
+        <div class="footer-placeholder"></div>
+        <script>
+            fetch('../footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementsByClassName('footer-placeholder')[0].innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        </script>
+    </body>
+</html>
+<script src="../scripts.js"></script>

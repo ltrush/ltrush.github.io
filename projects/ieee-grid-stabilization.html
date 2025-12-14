@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sustainable Grid Stabilization | Portfolio</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../styles.min.css" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar">
+            <h1 class="logo">
+                <a href="../index.html">Luke Trusheim</a>
+            </h1>
+            <ul class="nav-list">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../portfolio.html">Portfolio</a></li>
+                <li><a href="../resume.html">Resume</a></li>
+                <!-- <li><a href="../blog.html">Blog</a></li> -->
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1 class="page-title">Sustainable Grid Stabilization IEEE Paper</h1>
+            <p class="section-lead">Documented the work our team completed in the 2025 WERC Environmental Engineering Competition to stabilize grid operations using green hydrogen technology.</p>
+            <div class="project">
+                <img class="project-image" src="../images/IEEE_logo.png" alt="IEEE logo">
+            </div>
+            <section class="case-section">
+                <h2>Role / Tools / Timeline</h2>
+                <ul>
+                    <li>Role: Co-author and experiment contributor</li>
+                    <li>Tools: Lab instrumentation, technical writing, data analysis</li>
+                    <li>Timeline: Competition cycle through IEEE publication</li>
+                    <li>Team: Multidisciplinary engineering group</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>What I Built</h2>
+                <ul>
+                    <li>Helped design and validate a green hydrogen-based stabilization approach</li>
+                    <li>Captured experimental results and distilled them into IEEE publication format</li>
+                    <li>Coordinated edits, figures, and references for submission</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>Results</h2>
+                <ul>
+                    <li>Paper officially published in IEEE proceedings</li>
+                    <li>Documented the competition build and findings for future teams</li>
+                </ul>
+            </section>
+            <section class="case-section">
+                <h2>Links</h2>
+                <div class="cta-row">
+                    <a href="https://ieeexplore.ieee.org/document/11143791" target="_blank"><button class="link-button">Visit Official IEEE</button></a>
+                </div>
+            </section>
+            <div class="cta-row">
+                <a href="../portfolio.html"><button class="link-button">Back to Portfolio</button></a>
+            </div>
+        </main>
+        <div class="footer-placeholder"></div>
+        <script>
+            fetch('../footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementsByClassName('footer-placeholder')[0].innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        </script>
+    </body>
+</html>
+<script src="../scripts.js"></script>
