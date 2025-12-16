@@ -1,0 +1,58 @@
+---
+layout: layout.njk
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "/projects/{{ project.slug }}/index.html"
+---
+
+<main>
+  <h1 class="page-title">{{ project.title }}</h1>
+
+  {% if project.lead %}
+    <p class="section-lead">{{ project.lead }}</p>
+  {% endif %}
+
+  {% if project.hero %}
+    <div class="project">
+      <img class="project-image"
+           src="{{ project.hero.image }}"
+           alt="{{ project.hero.alt or project.title }}">
+    </div>
+  {% endif %}
+
+  {% if project.sections %}
+    {% for s in project.sections %}
+      <section class="case-section">
+        <h2>{{ s.heading }}</h2>
+
+        {% if s.list %}
+          <ul>
+            {% for item in s.list %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </section>
+    {% endfor %}
+  {% endif %}
+
+  {% if project.links and project.links.length %}
+    <section class="case-section">
+      <h2>Links</h2>
+      <div class="cta-row">
+        {% for l in project.links %}
+          <a href="{{ l.url }}"
+             {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
+            <button class="link-button">{{ l.label }}</button>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <div class="cta-row">
+    <a href="/portfolio/"><button class="link-button">Back to Portfolio</button></a>
+  </div>
+</main>

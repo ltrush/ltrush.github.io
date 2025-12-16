@@ -1,0 +1,43 @@
+---
+layout: layout.njk
+title: Portfolio
+---
+
+<h1 class="page-title">Projects & Proof-of-Concepts</h1>
+<p class="section-lead">Some of my passion projects, extracurricular activities, and classwork—from published research to weekend prototypes.</p>
+
+<div class="portfolio">
+    {% for project in projects %}
+    <div class="project">
+        <a>
+            <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+        </a>
+
+        <div class="project-details">
+            <p class="project-name">{{ project.title }}</p>
+            <p class="project-description">{{ project.description }}</p>
+
+            <div class="project-tags">
+                {% for tag in project.tags %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="cta-row">
+                {% if project.projectPage and project.projectPage.enabled and project.projectPage.url %}
+                <a href="{{ project.projectPage.url }}"><button class="link-button">Project Page</button></a>
+                {% endif %}
+
+                {% if project.links %}
+                    {% for l in project.links %}
+                    <a href="{{ l.url }}"
+                       {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
+                       <button class="link-button">{{ l.label }}</button>
+                    </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

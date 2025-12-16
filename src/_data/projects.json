@@ -1,0 +1,111 @@
+[
+  {
+    "slug": "bull-robot",
+    "title": "Autonomous Mobile Robot for Human Detection and Red Object Tracking (aka “The Bull”)",
+    "image": "/images/bull_robot.png",
+    "alt": "Bull robot",
+    "description": "An autonomous mobile robot that detects humans, recognizes red objects, and follows a target in real time using stereo vision and onboard AI.",
+    "tags": ["Robotics", "Artificial intelligence", "Python", "ROS 2"],
+    "projectPage": { "url": "/projects/bull-robot.html", "enabled": false },
+    "links": [
+      { "label": "View Report", "url": "https://docs.google.com/document/d/1lZx-MeNmgDfH1diibvZOjp3YgBB2NSjgP7vuyqTM64M/edit?usp=sharing", "newTab": true },
+      { "label": "View Demonstration Video", "url": "https://youtu.be/BJtE8CXVEb0", "newTab": true }
+    ]
+  },
+  {
+    "slug": "ieee-grid-stabilization",
+    "title": "Sustainable Grid Stabilization IEEE Paper",
+    "image": "/images/IEEE_logo.png",
+    "alt": "IEEE logo",
+    "description": "An officially published IEEE paper documenting the work our team completed in the 2025 WERC Environmental Engineering Competition to stabilize grid operations using green hydrogen technology",
+    "tags": ["Multidisciplinary", "Experimental design", "Technical writing"],
+    "projectPage": { "url": "/projects/ieee-grid-stabilization.html", "enabled": false },
+    "links": [
+      { "label": "Visit Official IEEE", "url": "https://ieeexplore.ieee.org/document/11143791", "newTab": true }
+    ]
+  },
+  {
+    "slug": "pipelined-riscv",
+    "title": "Pipelined and Cached RISC-V Processor",
+    "image": "/images/Pipelined RISCV Otter.png",
+    "alt": "RISCV Otter diagram",
+    "description": "A five-stage, pipelined and cached MCU capable of handling data/control hazards by stalling, forwarding, and flushing.",
+    "tags": ["Computer Architecture", "RISC-V", "FPGA", "SystemVerilog"],
+    "projectPage": { "url": "/projects/pipelined-riscv.html", "enabled": false },
+    "links": [
+      { "label": "Visit Github Repo", "url": "https://github.com/luketrusheim/riscv-mcu", "newTab": true }
+    ]
+  },
+  {
+    "slug": "dtmf-decoder",
+    "title": "DTMF Decoder in Python",
+    "image": "/images/dtmf.jpg",
+    "alt": "Keypad",
+    "description": "A dual-tone multi-frequency decoder coded in Python using integer-based digital signal processing.",
+    "tags": ["Digital signal processing", "Signal processing", "Python", "MATLAB"],
+    "projectPage": { "url": "/projects/dtmf-decoder.html", "enabled": false },
+    "links": [
+      { "label": "Visit Github Repo", "url": "https://github.com/luketrusheim/dtmfdecoder", "newTab": true }
+    ]
+  },
+  {
+    "slug": "reliable-udp-transfer",
+    "title": "Reliable File Transfer Protocol Built On (Unreliable) UDP",
+    "image": "/images/Sliding-Window-Protocol.jpg",
+    "alt": "Sliding Window Protocol diagram",
+    "description": "Built a reliable file transfer protocol on top of UDP using a Selective Reject sliding window. The project includes a client and forked server that handle packet loss, reordering, and corruption via checksums, cumulative ACKs (RR), targeted NACKs (SREJ), and an EOF/ACK teardown.",
+    "tags": ["Networks", "Protocol design", "UDP", "C"],
+    "projectPage": { "url": "/projects/reliable-udp-transfer.html", "enabled": false },
+    "links": [
+      { "label": "Visit Github Repo", "url": "https://github.com/ltrush/udp-reliable-transfer", "newTab": true }
+    ]
+  },
+  {
+    "slug": "sloinformed-polyhacks",
+    "title": "Camp Polyhacks 2025 / SLOinformed",
+    "image": "/images/SLOinformeddemo.gif",
+    "alt": "Me at the Hackathon",
+    "description": "A weekend long hackathon where our group presented an app to improve civic engagement in SLO. We won an award for best pitch!",
+    "tags": ["Hackathon", "Pitching", "Rapid prototyping"],
+    "projectPage": { "url": "/projects/sloinformed-polyhacks.html", "enabled": false },
+    "links": [
+      { "label": "View News Story", "url": "https://cie.calpoly.edu/news/student-run-cal-poly-hackathon-builds-interdisciplinary-solutions-to-challenges-facing-san-luis-obispo-community/", "newTab": true }
+    ]
+  },
+  {
+    "slug": "customdefinitions-etsy-shop",
+    "title": "CustomDefinitions Etsy Shop",
+    "image": "/images/customdefinitions logo.png",
+    "alt": "CustomDefinitions logo",
+    "description": "A digital shop where I sell custom-made wall decor.",
+    "tags": ["Entrepreneurship", "Design"],
+    "projectPage": { "url": "/projects/customdefinitions.html", "enabled": false },
+    "links": [
+      { "label": "Visit Etsy Store", "url": "https://customdefinitions.etsy.com", "newTab": true }
+    ]
+  },
+  {
+    "slug": "temporary-media-shortcut",
+    "title": "Temporary Media Apple Shortcut",
+    "image": "/images/Shortcut Logo Icon.png",
+    "alt": "Apple Shortcuts logo",
+    "description": "An Apple shortcut to take and send photos and videos that you don't want around forever.",
+    "tags": ["Automation", "Productivity"],
+    "projectPage": { "url": "/projects/temporary-media-shortcut.html", "enabled": false },
+    "links": [
+      { "label": "Download Apple Shortcut", "url": "/Download Items/Temporary Media.shortcut" }
+    ]
+  },
+  {
+    "slug": "personal-website",
+    "title": "Personal Website",
+    "image": "/images/website.png",
+    "alt": "Image representing a website",
+    "description": "A website built using HTML, CSS, and JavaScript.",
+    "tags": ["Web", "HTML/CSS/JS"],
+    "projectPage": { "url": "/projects/personal-website.html", "enabled": false },
+    "links": [
+      { "label": "Visit Homepage", "url": "/index.html" }
+    ]
+  }
+]
