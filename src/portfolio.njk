@@ -6,8 +6,73 @@ title: Portfolio
 <h1 class="page-title">Projects & Proof-of-Concepts</h1>
 <p class="section-lead">Some of my passion projects, extracurricular activities, and classwork—from published research to weekend prototypes.</p>
 
+{% set hasBuilding = false %}
+{% for project in projects %}
+    {% if project.currentlyBuilding %}
+        {% set hasBuilding = true %}
+    {% endif %}
+{% endfor %}
+
+{% if hasBuilding %}
+<section class="currently-building">
+    <div class="page-header">
+        <div>
+            <h2 class="page-title">Currently building</h2>
+        </div>
+    </div>
+
+    <div class="portfolio currently-building-list">
+        {% for project in projects %}
+            {% if project.currentlyBuilding %}
+            <div class="project project-wide">
+                <div class="project-media">
+                    <a>
+                        <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+                    </a>
+                </div>
+
+                <div class="project-details">
+                    <div class="cta-row currently-building-pill">
+                        <span class="pill">Currently building</span>
+                    </div>
+                    <p class="project-name">{{ project.title }}</p>
+                    <p class="project-description">{{ project.description }}</p>
+
+                    <div class="project-tags">
+                        {% for tag in project.tags %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+
+                    {% if project.links %}
+                    <div class="cta-row currently-building-links">
+                        {% if project.projectPage and project.projectPage.enabled %}
+                        <a href="/projects/{{ project.slug }}/"><button class="link-button">Project Page</button></a>
+                        {% endif %}
+                        {% for l in project.links %}
+                        <a href="{{ l.url }}" {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
+                            <button class="link-button">{{ l.label }}</button>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<div class="page-header">
+        <div>
+            <h2 class="page-title">Completed</h2>
+        </div>
+</div>
+
 <div class="portfolio">
     {% for project in projects %}
+    {% if not project.currentlyBuilding %}
     <div class="project">
         <a>
             <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
@@ -24,20 +89,19 @@ title: Portfolio
             </div>
 
             <div class="cta-row">
-                {% if project.projectPage and project.projectPage.enabled and project.projectPage.url %}
-                <a href="{{ project.projectPage.url }}"><button class="link-button">Project Page</button></a>
+                {% if project.projectPage and project.projectPage.enabled %}
+                <a href="/projects/{{ project.slug }}/"><button class="link-button">Project Page</button></a>
                 {% endif %}
-
                 {% if project.links %}
                     {% for l in project.links %}
-                    <a href="{{ l.url }}"
-                       {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
-                       <button class="link-button">{{ l.label }}</button>
+                    <a href="{{ l.url }}" {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
+                        <button class="link-button">{{ l.label }}</button>
                     </a>
                     {% endfor %}
                 {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
     {% endfor %}
 </div>

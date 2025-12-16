@@ -7,52 +7,84 @@ pagination:
 permalink: "/projects/{{ project.slug }}/index.html"
 ---
 
-<main>
+{# If project pages are disabled for this project, output a simple message #}
+{% if not project.projectPage or not project.projectPage.enabled %}
   <h1 class="page-title">{{ project.title }}</h1>
-
-  {% if project.lead %}
-    <p class="section-lead">{{ project.lead }}</p>
-  {% endif %}
-
-  {% if project.hero %}
-    <div class="project">
-      <img class="project-image"
-           src="{{ project.hero.image }}"
-           alt="{{ project.hero.alt or project.title }}">
-    </div>
-  {% endif %}
-
-  {% if project.sections %}
-    {% for s in project.sections %}
-      <section class="case-section">
-        <h2>{{ s.heading }}</h2>
-
-        {% if s.list %}
-          <ul>
-            {% for item in s.list %}
-              <li>{{ item }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </section>
-    {% endfor %}
-  {% endif %}
-
-  {% if project.links and project.links.length %}
-    <section class="case-section">
-      <h2>Links</h2>
-      <div class="cta-row">
-        {% for l in project.links %}
-          <a href="{{ l.url }}"
-             {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
-            <button class="link-button">{{ l.label }}</button>
-          </a>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-
+  <p class="section-lead">This project page isn’t available yet.</p>
   <div class="cta-row">
     <a href="/portfolio/"><button class="link-button">Back to Portfolio</button></a>
   </div>
-</main>
+
+{% else %}
+
+  <h1 class="page-title">{{ project.title }}</h1>
+  <p class="section-lead">{{ project.description }}</p>
+
+      {% if project.image %}
+        <a>
+          <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+        </a>
+      {% endif %}
+
+      <div class="project-details">
+
+        {% if project.tags and project.tags.length %}
+          <div class="project-tags">
+            {% for tag in project.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="cta-row">
+          <a href="/portfolio/"><button class="link-button">Back to Portfolio</button></a>
+
+          {% if project.links and project.links.length %}
+            {% for l in project.links %}
+              <a href="{{ l.url }}" target="_blank" rel="noreferrer">
+                <button class="link-button">{{ l.label }}</button>
+              </a>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {# Render projectPage.sections #}
+        {% for section in project.projectPage.sections %}
+
+          {% if section.title %}
+            <p class="project-name">{{ section.title }}</p>
+          {% endif %}
+
+          {% if section.type == "text" %}
+            {% if section.body %}
+              <p class="project-description">{{ section.body }}</p>
+            {% endif %}
+
+          {% elif section.type == "bullets" %}
+            {% if section.items and section.items.length %}
+              <ul class="project-description">
+                {% for item in section.items %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+          {% elif section.type == "keyValue" %}
+            {% if section.items and section.items.length %}
+              <div class="project-description">
+                {% for kv in section.items %}
+                  <p><strong>{{ kv.label }}:</strong> {{ kv.value }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+          {% else %}
+            {# Unknown section type - fail gracefully #}
+            <p class="project-description">Unsupported section type: {{ section.type }}</p>
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+
+{% endif %}

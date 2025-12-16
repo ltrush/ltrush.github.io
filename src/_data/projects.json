@@ -1,5 +1,112 @@
 [
   {
+    "slug": "duckwild",
+    "title": "DuckWild Wildlife Tracking System",
+    "image": "/images/duckwild.png",
+    "alt": "Prototype wildlife tracking node with camera and LoRa mesh networking",
+    "description": "A low-power wildlife monitoring system that uses on-device computer vision and a LoRa mesh network to detect and identify animals without relying on cellular or Wi-Fi connectivity.",
+    "tags": [
+      "Embedded Systems",
+      "Computer Vision",
+      "Mesh Networking",
+      "IoT",
+      "LoRaWAN",
+      "Raspberry Pi"
+    ],
+    "currentlyBuilding": true,
+    "projectPage": {
+      "enabled": true,
+      "sections": [
+        {
+          "type": "text",
+          "title": "Project Overview",
+          "body": "DuckWild is an off-grid wildlife monitoring system that combines edge AI and long-range mesh networking. The system uses a Raspberry Pi, motion sensing, and an infrared camera to detect animals, identify species locally, and transmit lightweight data packets over a LoRa mesh network using the ClusterDuck Protocol. The goal is to enable wildlife tracking in remote environments without relying on cellular, Wi-Fi, or manual SD card retrieval."
+        },
+        {
+          "type": "bullets",
+          "title": "The Problem",
+          "items": [
+            "Traditional wildlife cameras store images locally, requiring physical retrieval",
+            "Cellular models are expensive and unreliable in remote areas",
+            "Most capture far more useless data than actionable insight",
+            "DuckWild filters at the edge—sending structured data instead of raw images"
+          ]
+        },
+        {
+          "type": "keyValue",
+          "title": "System Architecture",
+          "items": [
+            {
+              "label": "Edge node",
+              "value": "Raspberry Pi + IR camera + PIR motion sensor"
+            },
+            {
+              "label": "AI pipeline",
+              "value": "MegaDetector → SpeciesNet for species classification"
+            },
+            {
+              "label": "Networking",
+              "value": "LoRa radio (SX1262) using the ClusterDuck Protocol"
+            },
+            {
+              "label": "Mesh routing",
+              "value": "Packets hop node-to-node until reaching a gateway (PapaDuck)"
+            }
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "What We’ve Built So Far",
+          "items": [
+            "Python-based ClusterDuck implementation for Raspberry Pi",
+            "Successful serialization and transmission of ClusterDuck-compatible packets over LoRa",
+            "Working computer vision pipeline running fully on-device",
+            "~94% species classification accuracy on a real trail-camera dataset",
+            "Power-aware design decisions keeping average consumption under ~5W"
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "Key Technical Decisions",
+          "items": [
+            "Reimplemented ClusterDuck in Python instead of modifying upstream C++ for maintainability and reuse",
+            "Dropped hardware AI accelerators due to power cost with little benefit for solar operation",
+            "Motion-triggered, event-driven inference so AI only runs when needed"
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "My Contributions",
+          "items": [
+            "Helped design the system state machine and overall software flow",
+            "Integrated motion sensing, camera capture, and AI inference",
+            "Contributed to ClusterDuck packet handling and Raspberry Pi compatibility",
+            "Made power and architecture decisions based on real measurements"
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "Current Focus / What’s Next",
+          "items": [
+            "Full integration of AI pipeline + mesh networking",
+            "Solar and battery system bring-up",
+            "Weatherproof enclosure design",
+            "Long-range field testing with multiple nodes",
+            "Public demo video + open-source release"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Why This Project Matters",
+          "body": "DuckWild shows how embedded systems, networking, and AI intersect in the real world. It’s not about maximizing benchmarks—it’s about making technology usable where infrastructure doesn’t exist."
+        }
+      ]
+    },
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/YOUR_USERNAME/duckwild" }
+    ]
+  },
+  {
     "slug": "bull-robot",
     "title": "Autonomous Mobile Robot for Human Detection and Red Object Tracking (aka “The Bull”)",
     "image": "/images/bull_robot.png",
@@ -8,8 +115,16 @@
     "tags": ["Robotics", "Artificial intelligence", "Python", "ROS 2"],
     "projectPage": { "url": "/projects/bull-robot.html", "enabled": false },
     "links": [
-      { "label": "View Report", "url": "https://docs.google.com/document/d/1lZx-MeNmgDfH1diibvZOjp3YgBB2NSjgP7vuyqTM64M/edit?usp=sharing", "newTab": true },
-      { "label": "View Demonstration Video", "url": "https://youtu.be/BJtE8CXVEb0", "newTab": true }
+      {
+        "label": "View Report",
+        "url": "https://docs.google.com/document/d/1lZx-MeNmgDfH1diibvZOjp3YgBB2NSjgP7vuyqTM64M/edit?usp=sharing",
+        "newTab": true
+      },
+      {
+        "label": "View Demonstration Video",
+        "url": "https://youtu.be/BJtE8CXVEb0",
+        "newTab": true
+      }
     ]
   },
   {
@@ -19,9 +134,16 @@
     "alt": "IEEE logo",
     "description": "An officially published IEEE paper documenting the work our team completed in the 2025 WERC Environmental Engineering Competition to stabilize grid operations using green hydrogen technology",
     "tags": ["Multidisciplinary", "Experimental design", "Technical writing"],
-    "projectPage": { "url": "/projects/ieee-grid-stabilization.html", "enabled": false },
+    "projectPage": {
+      "url": "/projects/ieee-grid-stabilization.html",
+      "enabled": false
+    },
     "links": [
-      { "label": "Visit Official IEEE", "url": "https://ieeexplore.ieee.org/document/11143791", "newTab": true }
+      {
+        "label": "Visit Official IEEE",
+        "url": "https://ieeexplore.ieee.org/document/11143791",
+        "newTab": true
+      }
     ]
   },
   {
@@ -31,9 +153,16 @@
     "alt": "RISCV Otter diagram",
     "description": "A five-stage, pipelined and cached MCU capable of handling data/control hazards by stalling, forwarding, and flushing.",
     "tags": ["Computer Architecture", "RISC-V", "FPGA", "SystemVerilog"],
-    "projectPage": { "url": "/projects/pipelined-riscv.html", "enabled": false },
+    "projectPage": {
+      "url": "/projects/pipelined-riscv.html",
+      "enabled": false
+    },
     "links": [
-      { "label": "Visit Github Repo", "url": "https://github.com/luketrusheim/riscv-mcu", "newTab": true }
+      {
+        "label": "Visit Github Repo",
+        "url": "https://github.com/luketrusheim/riscv-mcu",
+        "newTab": true
+      }
     ]
   },
   {
@@ -42,10 +171,19 @@
     "image": "/images/dtmf.jpg",
     "alt": "Keypad",
     "description": "A dual-tone multi-frequency decoder coded in Python using integer-based digital signal processing.",
-    "tags": ["Digital signal processing", "Signal processing", "Python", "MATLAB"],
+    "tags": [
+      "Digital signal processing",
+      "Signal processing",
+      "Python",
+      "MATLAB"
+    ],
     "projectPage": { "url": "/projects/dtmf-decoder.html", "enabled": false },
     "links": [
-      { "label": "Visit Github Repo", "url": "https://github.com/luketrusheim/dtmfdecoder", "newTab": true }
+      {
+        "label": "Visit Github Repo",
+        "url": "https://github.com/luketrusheim/dtmfdecoder",
+        "newTab": true
+      }
     ]
   },
   {
@@ -55,9 +193,16 @@
     "alt": "Sliding Window Protocol diagram",
     "description": "Built a reliable file transfer protocol on top of UDP using a Selective Reject sliding window. The project includes a client and forked server that handle packet loss, reordering, and corruption via checksums, cumulative ACKs (RR), targeted NACKs (SREJ), and an EOF/ACK teardown.",
     "tags": ["Networks", "Protocol design", "UDP", "C"],
-    "projectPage": { "url": "/projects/reliable-udp-transfer.html", "enabled": false },
+    "projectPage": {
+      "url": "/projects/reliable-udp-transfer.html",
+      "enabled": false
+    },
     "links": [
-      { "label": "Visit Github Repo", "url": "https://github.com/ltrush/udp-reliable-transfer", "newTab": true }
+      {
+        "label": "Visit Github Repo",
+        "url": "https://github.com/ltrush/udp-reliable-transfer",
+        "newTab": true
+      }
     ]
   },
   {
@@ -67,9 +212,16 @@
     "alt": "Me at the Hackathon",
     "description": "A weekend long hackathon where our group presented an app to improve civic engagement in SLO. We won an award for best pitch!",
     "tags": ["Hackathon", "Pitching", "Rapid prototyping"],
-    "projectPage": { "url": "/projects/sloinformed-polyhacks.html", "enabled": false },
+    "projectPage": {
+      "url": "/projects/sloinformed-polyhacks.html",
+      "enabled": false
+    },
     "links": [
-      { "label": "View News Story", "url": "https://cie.calpoly.edu/news/student-run-cal-poly-hackathon-builds-interdisciplinary-solutions-to-challenges-facing-san-luis-obispo-community/", "newTab": true }
+      {
+        "label": "View News Story",
+        "url": "https://cie.calpoly.edu/news/student-run-cal-poly-hackathon-builds-interdisciplinary-solutions-to-challenges-facing-san-luis-obispo-community/",
+        "newTab": true
+      }
     ]
   },
   {
@@ -79,9 +231,16 @@
     "alt": "CustomDefinitions logo",
     "description": "A digital shop where I sell custom-made wall decor.",
     "tags": ["Entrepreneurship", "Design"],
-    "projectPage": { "url": "/projects/customdefinitions.html", "enabled": false },
+    "projectPage": {
+      "url": "/projects/customdefinitions.html",
+      "enabled": false
+    },
     "links": [
-      { "label": "Visit Etsy Store", "url": "https://customdefinitions.etsy.com", "newTab": true }
+      {
+        "label": "Visit Etsy Store",
+        "url": "https://customdefinitions.etsy.com",
+        "newTab": true
+      }
     ]
   },
   {
@@ -91,9 +250,15 @@
     "alt": "Apple Shortcuts logo",
     "description": "An Apple shortcut to take and send photos and videos that you don't want around forever.",
     "tags": ["Automation", "Productivity"],
-    "projectPage": { "url": "/projects/temporary-media-shortcut.html", "enabled": false },
+    "projectPage": {
+      "url": "/projects/temporary-media-shortcut.html",
+      "enabled": false
+    },
     "links": [
-      { "label": "Download Apple Shortcut", "url": "/Download Items/Temporary Media.shortcut" }
+      {
+        "label": "Download Apple Shortcut",
+        "url": "/Download Items/Temporary Media.shortcut"
+      }
     ]
   },
   {
@@ -103,9 +268,10 @@
     "alt": "Image representing a website",
     "description": "A website built using HTML, CSS, and JavaScript.",
     "tags": ["Web", "HTML/CSS/JS"],
-    "projectPage": { "url": "/projects/personal-website.html", "enabled": false },
-    "links": [
-      { "label": "Visit Homepage", "url": "/index.html" }
-    ]
+    "projectPage": {
+      "url": "/projects/personal-website.html",
+      "enabled": false
+    },
+    "links": [{ "label": "Visit Homepage", "url": "/index.html" }]
   }
 ]
