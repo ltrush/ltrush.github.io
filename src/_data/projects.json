@@ -5,6 +5,7 @@
     "image": "/images/duckwild.png",
     "alt": "Prototype wildlife tracking node with camera and LoRa mesh networking",
     "description": "A low-power wildlife monitoring system that uses on-device computer vision and a LoRa mesh network to detect and identify animals without relying on cellular or Wi-Fi connectivity.",
+    "dates": "Sept. 2025 – Present",
     "tags": [
       "Embedded Systems",
       "Computer Vision",
@@ -112,8 +113,97 @@
     "image": "/images/bull_robot.png",
     "alt": "Bull robot",
     "description": "An autonomous mobile robot that detects humans, recognizes red objects, and follows a target in real time using stereo vision and onboard AI.",
+    "dates": "Nov. 2025 - Dec. 2025",
     "tags": ["Robotics", "Artificial intelligence", "Python", "ROS 2"],
-    "projectPage": { "url": "/projects/bull-robot.html", "enabled": false },
+    "projectPage": { 
+      "url": "/projects/bull-robot.html", 
+      "enabled": false,
+      "sections": [
+        {
+          "type": "text",
+          "title": "Project Overview",
+          "body": "DuckWild is an off-grid wildlife monitoring system that combines edge AI and long-range mesh networking. The system uses a Raspberry Pi, motion sensing, and an infrared camera to detect animals, identify species locally, and transmit lightweight data packets over a LoRa mesh network using the ClusterDuck Protocol. The goal is to enable wildlife tracking in remote environments without relying on cellular, Wi-Fi, or manual SD card retrieval."
+        },
+        {
+          "type": "bullets",
+          "title": "The Problem",
+          "items": [
+            "Traditional wildlife cameras store images locally, requiring physical retrieval",
+            "Cellular models are expensive and unreliable in remote areas",
+            "Most capture far more useless data than actionable insight",
+            "DuckWild filters at the edge—sending structured data instead of raw images"
+          ]
+        },
+        {
+          "type": "keyValue",
+          "title": "System Architecture",
+          "items": [
+            {
+              "label": "Edge node",
+              "value": "Raspberry Pi + IR camera + PIR motion sensor"
+            },
+            {
+              "label": "AI pipeline",
+              "value": "MegaDetector → SpeciesNet for species classification"
+            },
+            {
+              "label": "Networking",
+              "value": "LoRa radio (SX1262) using the ClusterDuck Protocol"
+            },
+            {
+              "label": "Mesh routing",
+              "value": "Packets hop node-to-node until reaching a gateway (PapaDuck)"
+            }
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "What We’ve Built So Far",
+          "items": [
+            "Python-based ClusterDuck implementation for Raspberry Pi",
+            "Successful serialization and transmission of ClusterDuck-compatible packets over LoRa",
+            "Working computer vision pipeline running fully on-device",
+            "~94% species classification accuracy on a real trail-camera dataset",
+            "Power-aware design decisions keeping average consumption under ~5W"
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "Key Technical Decisions",
+          "items": [
+            "Reimplemented ClusterDuck in Python instead of modifying upstream C++ for maintainability and reuse",
+            "Dropped hardware AI accelerators due to power cost with little benefit for solar operation",
+            "Motion-triggered, event-driven inference so AI only runs when needed"
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "My Contributions",
+          "items": [
+            "Helped design the system state machine and overall software flow",
+            "Integrated motion sensing, camera capture, and AI inference",
+            "Contributed to ClusterDuck packet handling and Raspberry Pi compatibility",
+            "Made power and architecture decisions based on real measurements"
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "Current Focus / What’s Next",
+          "items": [
+            "Full integration of AI pipeline + mesh networking",
+            "Solar and battery system bring-up",
+            "Weatherproof enclosure design",
+            "Long-range field testing with multiple nodes",
+            "Public demo video + open-source release"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Why This Project Matters",
+          "body": "DuckWild shows how embedded systems, networking, and AI intersect in the real world. It’s not about maximizing benchmarks—it’s about making technology usable where infrastructure doesn’t exist."
+        }
+      ]
+    }, 
     "links": [
       {
         "label": "View Report",
@@ -133,6 +223,7 @@
     "image": "/images/IEEE_logo.png",
     "alt": "IEEE logo",
     "description": "An officially published IEEE paper documenting the work our team completed in the 2025 WERC Environmental Engineering Competition to stabilize grid operations using green hydrogen technology",
+    "dates": "Oct. 2024 - Apr. 2025",
     "tags": ["Multidisciplinary", "Experimental design", "Technical writing"],
     "projectPage": {
       "url": "/projects/ieee-grid-stabilization.html",
@@ -152,6 +243,7 @@
     "image": "/images/Pipelined RISCV Otter.png",
     "alt": "RISCV Otter diagram",
     "description": "A five-stage, pipelined and cached MCU capable of handling data/control hazards by stalling, forwarding, and flushing.",
+    "dates": "Sept. 2024 – Dec. 2024",
     "tags": ["Computer Architecture", "RISC-V", "FPGA", "SystemVerilog"],
     "projectPage": {
       "url": "/projects/pipelined-riscv.html",
@@ -171,6 +263,7 @@
     "image": "/images/dtmf.jpg",
     "alt": "Keypad",
     "description": "A dual-tone multi-frequency decoder coded in Python using integer-based digital signal processing.",
+    "dates": "Sept. 2024 - Dec. 2024",
     "tags": [
       "Digital signal processing",
       "Signal processing",
@@ -192,10 +285,27 @@
     "image": "/images/Sliding-Window-Protocol.jpg",
     "alt": "Sliding Window Protocol diagram",
     "description": "Built a reliable file transfer protocol on top of UDP using a Selective Reject sliding window. The project includes a client and forked server that handle packet loss, reordering, and corruption via checksums, cumulative ACKs (RR), targeted NACKs (SREJ), and an EOF/ACK teardown.",
+    "dates": "Mar. 2025 - May. 2025",
     "tags": ["Networks", "Protocol design", "UDP", "C"],
     "projectPage": {
       "url": "/projects/reliable-udp-transfer.html",
-      "enabled": false
+      "enabled": true,
+      "sections": [
+        {
+          "type": "text",
+          "title": "Project Overview",
+          "body": "This project implements a TCP-like reliable file transfer protocol built on top of UDP, written entirely in C. Because UDP does not guarantee delivery, ordering, or data integrity, the system adds its own reliability mechanisms to support correct file transfer over an unreliable network. The protocol uses a selective-reject sliding window to keep multiple packets in flight at once, cumulative acknowledgments (RR) to advance the window efficiently, and targeted retransmissions (SREJ) to recover from packet loss or corruption without resending unaffected data. A checksum is used to detect bit errors, and an explicit EOF/ACK handshake ensures both sides agree when a transfer has completed. The system consists of a concurrent UDP server that forks per client and maintains a circular send window, and a client that buffers out-of-order packets, requests retransmissions for missing data, and writes the reconstructed file to disk. Robustness is verified using controlled packet loss and corruption injection, confirming correct file transfer across varying error rates, window sizes, and file sizes. This project emphasizes low-level networking, protocol state machines, and fault-tolerant C programming, providing hands-on experience with how transport-layer reliability and flow control are implemented beneath TCP."
+        },
+        {
+          "type": "bullets",
+          "title": "What I Did",
+          "items": [
+            "Designed and implemented a reliable UDP transport protocol in C using a selective-reject sliding window",
+            "Built sender/receiver state machines to guarantee correct file transfer under a stressed network (packet loss, bit errors)",
+            "Gained experience implementing transport-layer reliability and flow control beyond TCP abstractions"
+          ]
+        }
+      ]
     },
     "links": [
       {
@@ -211,6 +321,7 @@
     "image": "/images/SLOinformeddemo.gif",
     "alt": "Me at the Hackathon",
     "description": "A weekend long hackathon where our group presented an app to improve civic engagement in SLO. We won an award for best pitch!",
+    "dates": "Mar. 2025",
     "tags": ["Hackathon", "Pitching", "Rapid prototyping"],
     "projectPage": {
       "url": "/projects/sloinformed-polyhacks.html",
@@ -230,6 +341,7 @@
     "image": "/images/customdefinitions logo.png",
     "alt": "CustomDefinitions logo",
     "description": "A digital shop where I sell custom-made wall decor.",
+    "dates": "2020 – Present",
     "tags": ["Entrepreneurship", "Design"],
     "projectPage": {
       "url": "/projects/customdefinitions.html",
@@ -249,6 +361,7 @@
     "image": "/images/Shortcut Logo Icon.png",
     "alt": "Apple Shortcuts logo",
     "description": "An Apple shortcut to take and send photos and videos that you don't want around forever.",
+    "dates": "2023",
     "tags": ["Automation", "Productivity"],
     "projectPage": {
       "url": "/projects/temporary-media-shortcut.html",
@@ -267,6 +380,7 @@
     "image": "/images/website.png",
     "alt": "Image representing a website",
     "description": "A website built using HTML, CSS, and JavaScript.",
+    "dates": "Sept. 2024 – Present",
     "tags": ["Web Development", "HTML/CSS/JS", "Node.js", "Eleventy"],
     "projectPage": {
       "url": "/projects/personal-website.html",

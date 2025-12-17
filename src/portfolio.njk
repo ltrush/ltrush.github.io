@@ -36,6 +36,9 @@ title: Portfolio
                         <span class="pill">Currently building</span>
                     </div>
                     <p class="project-name">{{ project.title }}</p>
+                    {% if project.dates %}
+                    <p class="project-date">{{ project.dates }}</p>
+                    {% endif %}
                     <p class="project-description">{{ project.description }}</p>
 
                     <div class="project-tags">
@@ -80,6 +83,9 @@ title: Portfolio
 
         <div class="project-details">
             <p class="project-name">{{ project.title }}</p>
+            {% if project.dates %}
+            <p class="project-date">{{ project.dates }}</p>
+            {% endif %}
             <p class="project-description">{{ project.description }}</p>
 
             <div class="project-tags">

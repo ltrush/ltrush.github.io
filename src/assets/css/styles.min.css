@@ -399,6 +399,11 @@ img {
   color: var(--ink);
   margin: 0;
 }
+.project-date {
+  color: var(--muted);
+  margin: 0;
+  font-weight: 600;
+}
 
 .project-description {
   color: var(--muted);
