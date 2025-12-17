@@ -267,7 +267,7 @@
     "image": "/images/website.png",
     "alt": "Image representing a website",
     "description": "A website built using HTML, CSS, and JavaScript.",
-    "tags": ["Web", "HTML/CSS/JS"],
+    "tags": ["Web Development", "HTML/CSS/JS", "Node.js", "Eleventy"],
     "projectPage": {
       "url": "/projects/personal-website.html",
       "enabled": false
