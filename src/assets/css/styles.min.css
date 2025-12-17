@@ -109,6 +109,18 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+#contact-form label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
 button,
 .button {
   padding: 12px 18px;
@@ -523,5 +535,9 @@ footer p {
 
   .footer {
     padding: 16px 20px;
+  }
+
+  #contact-form {
+    gap: 12px;
   }
 }
