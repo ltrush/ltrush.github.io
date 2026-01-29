@@ -286,7 +286,7 @@
     "image": "/images/Sliding-Window-Protocol.jpg",
     "alt": "Sliding Window Protocol diagram",
     "description": "Built a reliable file transfer protocol on top of UDP using a Selective Reject sliding window. The project includes a client and forked server that handle packet loss, reordering, and corruption via checksums, cumulative ACKs (RR), targeted NACKs (SREJ), and an EOF/ACK teardown.",
-    "dates": "Mar. 2025 - May. 2025",
+    "dates": "May. 2025",
     "tags": ["Networks", "Protocol design", "UDP", "C"],
     "projectPage": {
       "url": "/projects/reliable-udp-transfer.html",
