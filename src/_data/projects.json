@@ -109,6 +109,36 @@
     ]
   },
   {
+    "slug": "bare-metal-digital-camera",
+    "title": "Bare Metal Digital Camera",
+    "image": "/images/camera-flowchart.png",
+    "alt": "Flowchart for digital camera firmware",
+    "description": "Built a STM32-based digital camera by integrating camera, LCD screen, and SD card storage.",
+    "dates": "May. 2025 - Jun. 2025",
+    "tags": ["STM32", "DMA", "SPI", "I2C", "Firmware/Hardware Debugging"],
+    "projectPage": {
+      "url": "/projects/bare-metal-digital-camera.html",
+      "enabled": true,
+      "sections": [
+        {
+          "type": "text",
+          "title": "Project Overview",
+          "body": "Built a STM32-based digital camera by integrating camera, LCD screen, and SD card storage."
+        },
+        {
+          "type": "bullets",
+          "title": "What I Did",
+          "items": [
+            "Developed bare-metal firmware for an STM32-based digital camera system integrating an OV5640 camera, LCD screen, and SD card storage",
+            "Implemented interrupt-driven DMA pipeline to capture and transfer real-time image data without frame loss",
+            "Interfaced with peripherals using SPI and I2C, and configured registers based on datasheet timing specifications",
+            "Interpreted datasheets and signal timing specifications to ensure proper peripheral integration"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "slug": "lwp-library",
     "title": "Lightweight Process Library",
     "image": "/images/thread-process-meme.png",
