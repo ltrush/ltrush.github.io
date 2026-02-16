@@ -109,6 +109,26 @@
     ]
   },
   {
+    "slug": "lwp-library",
+    "title": "Lightweight Process Library",
+    "image": "/images/thread-process-meme.png",
+    "alt": "Meme about Linux threads and processes",
+    "description": "A small user‑level threading library written in C with a round‑robin scheduler.",
+    "dates": "Jan. 2026",
+    "tags": ["Linux", "C", "Threads"],
+    "projectPage": {
+      "url": "/projects/ieee-grid-stabilization.html",
+      "enabled": false
+    },
+    "links": [
+      {
+        "label": "View Github Repo",
+        "url": "https://github.com/ltrush/lightweight-process-library",
+        "newTab": true
+      }
+    ]
+  },
+  {
     "slug": "bull-robot",
     "title": "Autonomous Mobile Robot for Human Detection and Red Object Tracking (aka “The Bull”)",
     "image": "/images/bull_robot.png",
