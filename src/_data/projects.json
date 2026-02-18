@@ -5,7 +5,10 @@
     "image": "/images/duckwild.png",
     "alt": "Prototype wildlife tracking node with camera and LoRa mesh networking",
     "description": "A low-power wildlife monitoring system that uses on-device computer vision and a LoRa mesh network to detect and identify animals without relying on cellular or Wi-Fi connectivity.",
-    "dates": "Sept. 2025 – Present",
+    "date": {
+      "start": { "month": 9, "year": 2025 },
+      "present": true
+    },
     "tags": [
       "Embedded Systems",
       "Computer Vision",
@@ -114,7 +117,10 @@
     "image": "/images/camera-flowchart.png",
     "alt": "Flowchart for digital camera firmware",
     "description": "Built a STM32-based digital camera by integrating camera, LCD screen, and SD card storage.",
-    "dates": "May. 2025 - Jun. 2025",
+    "date": {
+      "start": { "month": 5, "year": 2025 },
+      "end": { "month": 6, "year": 2025 }
+    },
     "tags": ["STM32", "DMA", "SPI", "I2C", "Firmware/Hardware Debugging"],
     "projectPage": {
       "url": "/projects/bare-metal-digital-camera.html",
@@ -144,7 +150,9 @@
     "image": "/images/thread-process-meme.png",
     "alt": "Meme about Linux threads and processes",
     "description": "A small user‑level threading library written in C with a round‑robin scheduler.",
-    "dates": "Jan. 2026",
+    "date": {
+      "start": { "month": 1, "year": 2026 }
+    },
     "tags": ["Linux", "C", "Threads"],
     "projectPage": {
       "url": "/projects/ieee-grid-stabilization.html",
@@ -164,7 +172,10 @@
     "image": "/images/bull_robot.png",
     "alt": "Bull robot",
     "description": "An autonomous mobile robot that detects humans, recognizes red objects, and follows a target in real time using stereo vision and onboard AI.",
-    "dates": "Nov. 2025 - Dec. 2025",
+    "date": {
+      "start": { "month": 11, "year": 2025 },
+      "end": { "month": 12, "year": 2025 }
+    },
     "tags": ["Robotics", "Artificial intelligence", "Python", "ROS 2"],
     "projectPage": { 
       "url": "/projects/bull-robot.html", 
@@ -274,7 +285,10 @@
     "image": "/images/IEEE_logo.png",
     "alt": "IEEE logo",
     "description": "An officially published IEEE paper documenting the work our team completed in the 2025 WERC Environmental Engineering Competition to stabilize grid operations using green hydrogen technology",
-    "dates": "Oct. 2024 - Apr. 2025",
+    "date": {
+      "start": { "month": 10, "year": 2024 },
+      "end": { "month": 4, "year": 2025 }
+    },
     "tags": ["Multidisciplinary", "Experimental design", "Technical writing"],
     "projectPage": {
       "url": "/projects/ieee-grid-stabilization.html",
@@ -294,7 +308,10 @@
     "image": "/images/Pipelined RISCV Otter.png",
     "alt": "RISCV Otter diagram",
     "description": "A five-stage, pipelined and cached MCU capable of handling data/control hazards by stalling, forwarding, and flushing.",
-    "dates": "Sept. 2024 – Dec. 2024",
+    "date": {
+      "start": { "month": 9, "year": 2024 },
+      "end": { "month": 12, "year": 2024 }
+    },
     "tags": ["Computer Architecture", "RISC-V", "FPGA", "SystemVerilog"],
     "projectPage": {
       "url": "/projects/pipelined-riscv.html",
@@ -314,7 +331,10 @@
     "image": "/images/dtmf.jpg",
     "alt": "Keypad",
     "description": "A dual-tone multi-frequency decoder coded in Python using integer-based digital signal processing.",
-    "dates": "Sept. 2024 - Dec. 2024",
+    "date": {
+      "start": { "month": 9, "year": 2024 },
+      "end": { "month": 12, "year": 2024 }
+    },
     "tags": [
       "Digital signal processing",
       "Signal processing",
@@ -336,7 +356,9 @@
     "image": "/images/Sliding-Window-Protocol.jpg",
     "alt": "Sliding Window Protocol diagram",
     "description": "Built a reliable file transfer protocol on top of UDP using a Selective Reject sliding window. The project includes a client and forked server that handle packet loss, reordering, and corruption via checksums, cumulative ACKs (RR), targeted NACKs (SREJ), and an EOF/ACK teardown.",
-    "dates": "May. 2025",
+    "date": {
+      "start": { "month": 5, "year": 2025 }
+    },
     "tags": ["Networks", "Protocol design", "UDP", "C"],
     "projectPage": {
       "url": "/projects/reliable-udp-transfer.html",
@@ -372,7 +394,9 @@
     "image": "/images/SLOinformeddemo.gif",
     "alt": "Me at the Hackathon",
     "description": "A weekend long hackathon where our group presented an app to improve civic engagement in SLO. We won an award for best pitch!",
-    "dates": "Mar. 2025",
+    "date": {
+      "start": { "month": 3, "year": 2025 }
+    },
     "tags": ["Hackathon", "Pitching", "Rapid prototyping"],
     "projectPage": {
       "url": "/projects/sloinformed-polyhacks.html",
@@ -392,7 +416,10 @@
     "image": "/images/customdefinitions logo.png",
     "alt": "CustomDefinitions logo",
     "description": "A digital shop where I sell custom-made wall decor.",
-    "dates": "2020 – Present",
+    "date": {
+      "start": { "year": 2020 },
+      "present": true
+    },
     "tags": ["Entrepreneurship", "Design"],
     "projectPage": {
       "url": "/projects/customdefinitions.html",
@@ -412,7 +439,9 @@
     "image": "/images/Shortcut Logo Icon.png",
     "alt": "Apple Shortcuts logo",
     "description": "An Apple shortcut to take and send photos and videos that you don't want around forever.",
-    "dates": "2023",
+    "date": {
+      "start": { "month": 4, "year": 2023 }
+    },
     "tags": ["Automation", "Productivity"],
     "projectPage": {
       "url": "/projects/temporary-media-shortcut.html",
@@ -431,7 +460,10 @@
     "image": "/images/website.png",
     "alt": "Image representing a website",
     "description": "A website built using HTML, CSS, and JavaScript.",
-    "dates": "Sept. 2024 – Present",
+    "date": {
+      "start": { "month": 9, "year": 2024 },
+      "present": true
+    },
     "tags": ["Web Development", "HTML/CSS/JS", "Node.js", "Eleventy"],
     "projectPage": {
       "url": "/projects/personal-website.html",

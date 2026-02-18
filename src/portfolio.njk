@@ -6,8 +6,9 @@ title: Portfolio
 <h1 class="page-title">Projects & Proof-of-Concepts</h1>
 <p class="section-lead">Some of my passion projects, extracurricular activities, and classwork—from published research to weekend prototypes.</p>
 
+{% set sortedProjects = projects | sortProjectsByDateDesc %}
 {% set hasBuilding = false %}
-{% for project in projects %}
+{% for project in sortedProjects %}
     {% if project.currentlyBuilding %}
         {% set hasBuilding = true %}
     {% endif %}
@@ -22,7 +23,7 @@ title: Portfolio
     </div>
 
     <div class="portfolio currently-building-list">
-        {% for project in projects %}
+        {% for project in sortedProjects %}
             {% if project.currentlyBuilding %}
             <div class="project project-wide">
                 <div class="project-media">
@@ -36,8 +37,9 @@ title: Portfolio
                         <span class="pill">Currently building</span>
                     </div>
                     <p class="project-name">{{ project.title }}</p>
-                    {% if project.dates %}
-                    <p class="project-date">{{ project.dates }}</p>
+                    {% set projectDateText = project | formatProjectDate %}
+                    {% if projectDateText %}
+                    <p class="project-date">{{ projectDateText }}</p>
                     {% endif %}
                     <p class="project-description">{{ project.description }}</p>
 
@@ -74,7 +76,7 @@ title: Portfolio
 </div>
 
 <div class="portfolio">
-    {% for project in projects %}
+    {% for project in sortedProjects %}
     {% if not project.currentlyBuilding %}
     <div class="project">
         <a>
@@ -83,8 +85,9 @@ title: Portfolio
 
         <div class="project-details">
             <p class="project-name">{{ project.title }}</p>
-            {% if project.dates %}
-            <p class="project-date">{{ project.dates }}</p>
+            {% set projectDateText = project | formatProjectDate %}
+            {% if projectDateText %}
+            <p class="project-date">{{ projectDateText }}</p>
             {% endif %}
             <p class="project-description">{{ project.description }}</p>
 

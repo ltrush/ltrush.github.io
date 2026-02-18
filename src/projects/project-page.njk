@@ -10,8 +10,9 @@ permalink: "/projects/{{ project.slug }}/index.html"
 {# If project pages are disabled for this project, output a simple message #}
 {% if not project.projectPage or not project.projectPage.enabled %}
   <h1 class="page-title">{{ project.title }}</h1>
-  {% if project.dates %}
-    <p class="project-date">{{ project.dates }}</p>
+  {% set projectDateText = project | formatProjectDate %}
+  {% if projectDateText %}
+    <p class="project-date">{{ projectDateText }}</p>
   {% endif %}
   <p class="section-lead">This project page isn’t available yet.</p>
   <div class="cta-row">
@@ -21,8 +22,9 @@ permalink: "/projects/{{ project.slug }}/index.html"
 {% else %}
 
   <h1 class="page-title">{{ project.title }}</h1>
-  {% if project.dates %}
-    <p class="project-date">{{ project.dates }}</p>
+  {% set projectDateText = project | formatProjectDate %}
+  {% if projectDateText %}
+    <p class="project-date">{{ projectDateText }}</p>
   {% endif %}
   <p class="section-lead">{{ project.description }}</p>
 
