@@ -281,18 +281,58 @@
   },
   {
     "slug": "ieee-grid-stabilization",
-    "title": "Sustainable Grid Stabilization IEEE Paper",
-    "image": "/images/IEEE_logo.png",
-    "alt": "IEEE logo",
-    "description": "An officially published IEEE paper documenting the work our team completed in the 2025 WERC Environmental Engineering Competition to stabilize grid operations using green hydrogen technology",
+    "title": "Published IEEE Paper",
+    "image": "/images/werc/ieee_paper_screenshot.png",
+    "alt": "Screenshot of paper title from the IEEE website",
+    "description": "A published paper documenting the work our team completed in the 2025 WERC Environmental Engineering Competition to stabilize grid operations using green hydrogen technology.",
+    "date": {
+      "start": { "month": 3, "year": 2025 },
+      "end": { "month": 4, "year": 2025 }
+    },
+    "tags": ["Documentation", "Technical writing"],
+    "projectPage": {
+      "url": "/projects/ieee-grid-stabilization.html",
+      "enabled": false
+    },
+    "links": [
+      {
+        "label": "Visit Official IEEE",
+        "url": "https://ieeexplore.ieee.org/document/11143791",
+        "newTab": true
+      }
+    ]
+  },
+  {
+    "slug": "werc-competition",
+    "title": "2025 WERC Enviornmental Engineering Competition",
+    "image": "/images/werc/group_photo.jpeg",
+    "alt": "Group photo",
+    "description": "A proof-of-concept solution to stabilize grid operations using green hydrogen technology.",
     "date": {
       "start": { "month": 10, "year": 2024 },
       "end": { "month": 4, "year": 2025 }
     },
-    "tags": ["Multidisciplinary", "Experimental design", "Technical writing"],
+    "tags": ["Python", "C", "Arduino"],
     "projectPage": {
-      "url": "/projects/ieee-grid-stabilization.html",
-      "enabled": false
+      "url": "/projects/werc-competition.html",
+      "enabled": true,
+      "sections": [
+        {
+          "type": "text",
+          "title": "Project Overview",
+          "body": "A hydrogen-based energy management system that integrates solar and fuel cells to transform intermittent renewable energy into a stable, dispatchable power source."
+        },
+        {
+          "type": "bullets",
+          "title": "What I Did",
+          "items": [
+            "Collaborated with a multi-disciplinary team of 8 engineering students for the 2025 WERC Environmental Design Contest, winning first place by researching a DERMS solution that integrates solar power and hydrogen fuel cells",
+            "Implemented a bench-scale by using Arduino microcontroller to monitor and control peripheral devices",
+            "Designed Python algorithm to simulate solution on real data, demonstrating stable energy output and cost savings",
+            "Published official IEEE paper documenting implementation and analysis of the bench-scale and algorithm"
+          ]
+        }
+      ]
     },
     "links": [
       {
