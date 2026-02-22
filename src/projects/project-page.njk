@@ -28,7 +28,21 @@ permalink: "/projects/{{ project.slug }}/index.html"
   {% endif %}
   <p class="section-lead">{{ project.description }}</p>
 
-      {% if project.image %}
+      {% if project.projectPage.images and project.projectPage.images.length %}
+        <div class="project-gallery">
+          {% for media in project.projectPage.images %}
+            {% set mediaSrc = media.src or media.url or media.image or media %}
+            {% if mediaSrc %}
+              <figure class="project-gallery-item">
+                <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or project.alt or project.title }}">
+                {% if media.caption %}
+                  <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
+                {% endif %}
+              </figure>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% elif project.image %}
         <a>
           <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
         </a>
@@ -82,6 +96,23 @@ permalink: "/projects/{{ project.slug }}/index.html"
               <div class="project-description">
                 {% for kv in section.items %}
                   <p><strong>{{ kv.label }}:</strong> {{ kv.value }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+          {% elif section.type == "gallery" %}
+            {% if section.images and section.images.length %}
+              <div class="project-gallery">
+                {% for media in section.images %}
+                  {% set mediaSrc = media.src or media.url or media.image or media %}
+                  {% if mediaSrc %}
+                    <figure class="project-gallery-item">
+                      <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or section.title or project.title }}">
+                      {% if media.caption %}
+                        <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
+                      {% endif %}
+                    </figure>
+                  {% endif %}
                 {% endfor %}
               </div>
             {% endif %}

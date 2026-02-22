@@ -411,6 +411,35 @@ img {
   margin: 0;
 }
 
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 8px 0 4px;
+}
+
+.project-gallery-item {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.project-gallery-item .project-image {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project-gallery-caption {
+  margin: 0;
+  padding: 10px 12px;
+  text-align: left;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;

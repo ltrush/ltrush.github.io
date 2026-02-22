@@ -316,6 +316,11 @@
     "projectPage": {
       "url": "/projects/werc-competition.html",
       "enabled": true,
+      "images": [
+        { "src": "/images/werc/group_photo.jpeg", "alt": "Group photo", "caption": "Team photo!" },
+        { "src": "/images/werc/benchscale.jpeg", "alt": "Benchscale", "caption": "Benchscale (solar panel not pictured)" },
+        { "src": "/images/werc/trophy.jpeg", "alt": "First place trophy", "caption": "First place trophy 🏆" }
+      ],
       "sections": [
         {
           "type": "text",
