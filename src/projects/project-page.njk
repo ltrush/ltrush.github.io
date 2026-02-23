@@ -20,21 +20,94 @@ permalink: "/projects/{{ project.slug }}/index.html"
   </div>
 
 {% else %}
-
-  <h1 class="page-title">{{ project.title }}</h1>
-  {% set projectDateText = project | formatProjectDate %}
-  {% if projectDateText %}
-    <p class="project-date">{{ projectDateText }}</p>
+  {% set topGalleryCount = 0 %}
+  {% if project.projectPage.images and project.projectPage.images.length %}
+    {% set topGalleryCount = project.projectPage.images.length %}
   {% endif %}
-  <p class="section-lead">{{ project.description }}</p>
+  {% set renderTopGalleryInHero = topGalleryCount == 1 %}
+  {% set renderTopGalleryBelowHero = topGalleryCount > 1 %}
+  {% set hasHeroImageFallback = (not topGalleryCount) and project.image %}
+  {% set hasTopVideos = project.projectPage.videos and project.projectPage.videos.length %}
+  {% set hasHeroMedia = renderTopGalleryInHero or hasHeroImageFallback or hasTopVideos %}
 
-      {% if project.projectPage.images and project.projectPage.images.length %}
-        <div class="project-gallery">
-          {% for media in project.projectPage.images %}
-            {% set mediaSrc = media.src or media.url or media.image or media %}
-            {% if mediaSrc %}
-              <figure class="project-gallery-item">
-                <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or project.alt or project.title }}">
+  <div class="project-page-hero{% if not hasHeroMedia %} project-page-hero--copy-only{% endif %}">
+    <div class="project-page-hero-copy">
+      <h1 class="page-title">{{ project.title }}</h1>
+      {% set projectDateText = project | formatProjectDate %}
+      {% if projectDateText %}
+        <p class="project-date">{{ projectDateText }}</p>
+      {% endif %}
+      <p class="section-lead">{{ project.description }}</p>
+
+      {% if project.tags and project.tags.length %}
+        <div class="project-tags">
+          {% for tag in project.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="cta-row">
+        <a href="/portfolio/"><button class="link-button">Back to Portfolio</button></a>
+
+        {% if project.links and project.links.length %}
+          {% for l in project.links %}
+            <a href="{{ l.url }}" target="_blank" rel="noreferrer">
+              <button class="link-button">{{ l.label }}</button>
+            </a>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if hasHeroMedia %}
+    <div class="project-page-hero-media">
+      {% if renderTopGalleryInHero %}
+        {% set heroMedia = project.projectPage.images[0] %}
+        {% set heroMediaSrc = heroMedia.src or heroMedia.url or heroMedia.image or heroMedia %}
+        {% if heroMediaSrc %}
+          <figure class="project-page-hero-figure">
+            <div class="project-page-hero-figure-media">
+              <img class="project-image" src="{{ heroMediaSrc }}" alt="{{ heroMedia.alt or project.alt or project.title }}">
+            </div>
+            {% if heroMedia.caption %}
+              <figcaption class="image-caption project-gallery-caption">{{ heroMedia.caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% endif %}
+      {% elif hasHeroImageFallback %}
+        <a class="project-page-hero-image">
+          <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+        </a>
+      {% endif %}
+
+      {% if hasTopVideos %}
+        <div class="project-video-grid">
+          {% for media in project.projectPage.videos %}
+            {% set embedSrc = media.embed or media.iframeSrc %}
+            {% set videoSrc = media.src or media.video or media.url or media %}
+            {% if embedSrc or videoSrc %}
+              <figure class="project-video-item">
+                <div class="project-video-frame-wrap">
+                  {% if embedSrc %}
+                    <iframe
+                      class="project-video-frame"
+                      src="{{ embedSrc }}"
+                      title="{{ media.title or project.title }}"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen>
+                    </iframe>
+                  {% else %}
+                    <video
+                      class="project-video-native"
+                      {% if media.poster %}poster="{{ media.poster }}"{% endif %}
+                      controls
+                      preload="metadata">
+                      <source src="{{ videoSrc }}" {% if media.type %}type="{{ media.type }}"{% endif %}>
+                    </video>
+                  {% endif %}
+                </div>
                 {% if media.caption %}
                   <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
                 {% endif %}
@@ -42,33 +115,30 @@ permalink: "/projects/{{ project.slug }}/index.html"
             {% endif %}
           {% endfor %}
         </div>
-      {% elif project.image %}
-        <a>
-          <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
-        </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+      {% if renderTopGalleryBelowHero %}
+        <div class="project-page-feature-media">
+          <div class="project-gallery">
+            {% for media in project.projectPage.images %}
+              {% set mediaSrc = media.src or media.url or media.image or media %}
+              {% if mediaSrc %}
+                <figure class="project-gallery-item">
+                  <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or project.alt or project.title }}">
+                  {% if media.caption %}
+                    <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
+                  {% endif %}
+                </figure>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
       {% endif %}
 
       <div class="project-details">
-
-        {% if project.tags and project.tags.length %}
-          <div class="project-tags">
-            {% for tag in project.tags %}
-              <span class="tag">{{ tag }}</span>
-            {% endfor %}
-          </div>
-        {% endif %}
-
-        <div class="cta-row">
-          <a href="/portfolio/"><button class="link-button">Back to Portfolio</button></a>
-
-          {% if project.links and project.links.length %}
-            {% for l in project.links %}
-              <a href="{{ l.url }}" target="_blank" rel="noreferrer">
-                <button class="link-button">{{ l.label }}</button>
-              </a>
-            {% endfor %}
-          {% endif %}
-        </div>
 
         {# Render projectPage.sections #}
         {% for section in project.projectPage.sections %}
@@ -114,6 +184,71 @@ permalink: "/projects/{{ project.slug }}/index.html"
                     </figure>
                   {% endif %}
                 {% endfor %}
+              </div>
+            {% endif %}
+
+          {% elif section.type == "video" %}
+            {% if section.videos and section.videos.length %}
+              <div class="project-video-grid">
+                {% for media in section.videos %}
+                  {% set embedSrc = media.embed or media.iframeSrc %}
+                  {% set videoSrc = media.src or media.video or media.url or media %}
+                  {% if embedSrc or videoSrc %}
+                    <figure class="project-video-item">
+                      <div class="project-video-frame-wrap">
+                        {% if embedSrc %}
+                          <iframe
+                            class="project-video-frame"
+                            src="{{ embedSrc }}"
+                            title="{{ media.title or section.title or project.title }}"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                          </iframe>
+                        {% else %}
+                          <video
+                            class="project-video-native"
+                            {% if media.poster %}poster="{{ media.poster }}"{% endif %}
+                            controls
+                            preload="metadata">
+                            <source src="{{ videoSrc }}" {% if media.type %}type="{{ media.type }}"{% endif %}>
+                          </video>
+                        {% endif %}
+                      </div>
+                      {% if media.caption %}
+                        <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
+                      {% endif %}
+                    </figure>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% elif section.embed or section.iframeSrc or section.src or section.video or section.url %}
+              <div class="project-video-grid">
+                <figure class="project-video-item">
+                  <div class="project-video-frame-wrap">
+                    {% if section.embed or section.iframeSrc %}
+                      <iframe
+                        class="project-video-frame"
+                        src="{{ section.embed or section.iframeSrc }}"
+                        title="{{ section.title or project.title }}"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                      </iframe>
+                    {% else %}
+                      <video
+                        class="project-video-native"
+                        {% if section.poster %}poster="{{ section.poster }}"{% endif %}
+                        controls
+                        preload="metadata">
+                        <source src="{{ section.src or section.video or section.url }}" {% if section.mimeType or section.fileType %}type="{{ section.mimeType or section.fileType }}"{% endif %}>
+                      </video>
+                    {% endif %}
+                  </div>
+                  {% if section.caption %}
+                    <figcaption class="image-caption project-gallery-caption">{{ section.caption }}</figcaption>
+                  {% endif %}
+                </figure>
               </div>
             {% endif %}
 

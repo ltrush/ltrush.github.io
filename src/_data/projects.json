@@ -182,6 +182,12 @@
       "enabled": true,
       "sections": [
         {
+          "type": "video",
+          "title": "Demo Video",
+          "embed": "https://www.youtube.com/embed/BJtE8CXVEb0",
+          "caption": "End-to-end demo"
+        },
+        {
           "type": "text",
           "title": "Project Overview",
           "body": "An autonomous mobile robot that detects humans using onboard neural networks, verifies the presence of red color, and follows the target using 3D spatial perception and proportional motion control."

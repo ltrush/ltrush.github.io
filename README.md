@@ -88,6 +88,7 @@ Year-only (supported):
 - `projectPage.enabled` (boolean): controls whether the “Project Page” button appears and whether the page renders full content vs “not available yet”
 - `projectPage.url` (string, optional/legacy): may still exist in data, but generated pages use `slug`
 - `projectPage.images` (array, optional): top-of-page image gallery shown before the project details/sections
+- `projectPage.videos` (array, optional): top-of-page video embeds/files shown before the project details/sections
 - `projectPage.sections` (array, optional): content blocks rendered in order on the project page
 
 ### `projectPage.images` item format (top-level gallery)
@@ -106,11 +107,43 @@ Example:
 ]
 ```
 
+### `projectPage.videos` item format (top-level videos)
+- Each item should usually be an object.
+- Supported formats:
+  - Embedded video (YouTube/Vimeo/etc.) via `embed` (or `iframeSrc`)
+  - Native hosted video via `src` (or `video` / `url`)
+
+Fields:
+- `embed` or `iframeSrc` (string, optional): iframe URL
+- `src` / `video` / `url` (string, optional): video file URL/path
+- `type` (string, optional): MIME type for native video (example: `video/mp4`)
+- `poster` (string, optional): poster image for native video
+- `title` (string, optional): iframe title
+- `caption` (string, optional)
+
+Example (embed + file):
+```json
+"videos": [
+  {
+    "embed": "https://www.youtube.com/embed/VIDEO_ID",
+    "title": "Demo video",
+    "caption": "System demo"
+  },
+  {
+    "src": "/videos/bench-test.mp4",
+    "type": "video/mp4",
+    "poster": "/images/bench-test-poster.jpg",
+    "caption": "Bench test recording"
+  }
+]
+```
+
 ### Allowed `projectPage.sections` types
 - `text`
 - `bullets`
 - `keyValue`
 - `gallery`
+- `video`
 
 All section types may include:
 - `title` (string, optional): rendered as a section heading
@@ -171,6 +204,40 @@ Fields:
 Fields:
 - `images` (array)
   - same item format as `projectPage.images` (string path or object with `src`/`alt`/`caption`)
+
+#### `video` section
+Supports either a single video directly on the section or a list via `videos`.
+
+Single video (embed):
+```json
+{
+  "type": "video",
+  "title": "Demo",
+  "embed": "https://www.youtube.com/embed/VIDEO_ID",
+  "caption": "End-to-end demo"
+}
+```
+
+Multiple videos:
+```json
+{
+  "type": "video",
+  "title": "Test Videos",
+  "videos": [
+    { "embed": "https://www.youtube.com/embed/VIDEO_ID_1", "caption": "Outdoor test" },
+    { "src": "/videos/test-2.mp4", "type": "video/mp4", "caption": "Lab test" }
+  ]
+}
+```
+
+Fields:
+- Single video mode:
+  - `embed` or `iframeSrc` (string), or `src` / `video` / `url` (string)
+  - `mimeType` or `fileType` (string, optional) for native video
+  - `poster` (string, optional)
+  - `caption` (string, optional)
+- Multi-video mode:
+  - `videos` (array): same item format as `projectPage.videos`
 
 ### Notes / behavior
 - Project pages are generated for every project via `src/projects/project-page.njk`, but if `projectPage.enabled` is false the page shows a “not available yet” message.
