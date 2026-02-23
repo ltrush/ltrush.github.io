@@ -185,7 +185,7 @@
           "type": "video",
           "title": "Demo Video",
           "embed": "https://www.youtube.com/embed/BJtE8CXVEb0",
-          "caption": "End-to-end demo"
+          "caption": "Video demonstrates bull robot following human only when red cloth is in frame"
         },
         {
           "type": "text",
