@@ -179,90 +179,53 @@
     "tags": ["Robotics", "Artificial intelligence", "Python", "ROS 2"],
     "projectPage": { 
       "url": "/projects/bull-robot.html", 
-      "enabled": false,
+      "enabled": true,
       "sections": [
         {
           "type": "text",
           "title": "Project Overview",
-          "body": "DuckWild is an off-grid wildlife monitoring system that combines edge AI and long-range mesh networking. The system uses a Raspberry Pi, motion sensing, and an infrared camera to detect animals, identify species locally, and transmit lightweight data packets over a LoRa mesh network using the ClusterDuck Protocol. The goal is to enable wildlife tracking in remote environments without relying on cellular, Wi-Fi, or manual SD card retrieval."
-        },
-        {
-          "type": "bullets",
-          "title": "The Problem",
-          "items": [
-            "Traditional wildlife cameras store images locally, requiring physical retrieval",
-            "Cellular models are expensive and unreliable in remote areas",
-            "Most capture far more useless data than actionable insight",
-            "DuckWild filters at the edge—sending structured data instead of raw images"
-          ]
+          "body": "An autonomous mobile robot that detects humans using onboard neural networks, verifies the presence of red color, and follows the target using 3D spatial perception and proportional motion control."
         },
         {
           "type": "keyValue",
           "title": "System Architecture",
           "items": [
             {
-              "label": "Edge node",
-              "value": "Raspberry Pi + IR camera + PIR motion sensor"
+              "label": "Perception – OAK-D Pro (DepthAI)",
+              "value": "Runs a neural network onboard to detect humans, generate 2D bounding boxes, and compute full 3D (X, Y, Z) positions using stereo depth."
             },
             {
-              "label": "AI pipeline",
-              "value": "MegaDetector → SpeciesNet for species classification"
+              "label": "Color Validation – OpenCV",
+              "value": "Converts RGB frames to HSV and applies dual red ranges to compute a red pixel ratio; triggers tracking only if red exceeds a 10% threshold."
             },
             {
-              "label": "Networking",
-              "value": "LoRa radio (SX1262) using the ClusterDuck Protocol"
+              "label": "ROS2 Integration – Topic-Based Pipeline",
+              "value": "Publishes spatial detections to /oak/nn/spatial_detections, filters for confident human detections (≥65%), and outputs validated targets to a custom /matador topic."
             },
             {
-              "label": "Mesh routing",
-              "value": "Packets hop node-to-node until reaching a gateway (PapaDuck)"
+              "label": "Motion Control – Proportional Controller",
+              "value": "Transforms detected pose into base_link frame using tf2, computes distance and heading error, and generates clamped linear/angular velocity commands."
             }
           ]
         },
         {
           "type": "bullets",
-          "title": "What We’ve Built So Far",
+          "title": "What I Did",
           "items": [
-            "Python-based ClusterDuck implementation for Raspberry Pi",
-            "Successful serialization and transmission of ClusterDuck-compatible packets over LoRa",
-            "Working computer vision pipeline running fully on-device",
-            "~94% species classification accuracy on a real trail-camera dataset",
-            "Power-aware design decisions keeping average consumption under ~5W"
+            "Integrated the OAK-D camera with ROS2 and implemented detection logic for tracking humans",
+            "Implemented coordinate frame transformations (tf2) and converted 3D pose data into velocity commands",
+            "Developed color recognition and red ratio thresholding by using OpenCV and filtering HSV values",
+            "Tuned the proportional controller, including velocity clamping and deadzones for stability"
           ]
         },
         {
           "type": "bullets",
-          "title": "Key Technical Decisions",
+          "title": "Possible Improvements",
           "items": [
-            "Reimplemented ClusterDuck in Python instead of modifying upstream C++ for maintainability and reuse",
-            "Dropped hardware AI accelerators due to power cost with little benefit for solar operation",
-            "Motion-triggered, event-driven inference so AI only runs when needed"
+            "Train or fine-tune a model capable of recognizing partial human features (e.g., legs) to improve detection at low-angles",
+            "Implement obstacle avoidance using LiDAR and path planning (e.g., A*) instead of assuming a clear path",
+            "Improve color detection with spatial filtering (connected components or bounding-box-based color checks) instead of global pixel ratio"
           ]
-        },
-        {
-          "type": "bullets",
-          "title": "My Contributions",
-          "items": [
-            "Helped design the system state machine and overall software flow",
-            "Integrated motion sensing, camera capture, and AI inference",
-            "Contributed to ClusterDuck packet handling and Raspberry Pi compatibility",
-            "Made power and architecture decisions based on real measurements"
-          ]
-        },
-        {
-          "type": "bullets",
-          "title": "Current Focus / What’s Next",
-          "items": [
-            "Full integration of AI pipeline + mesh networking",
-            "Solar and battery system bring-up",
-            "Weatherproof enclosure design",
-            "Long-range field testing with multiple nodes",
-            "Public demo video + open-source release"
-          ]
-        },
-        {
-          "type": "text",
-          "title": "Why This Project Matters",
-          "body": "DuckWild shows how embedded systems, networking, and AI intersect in the real world. It’s not about maximizing benchmarks—it’s about making technology usable where infrastructure doesn’t exist."
         }
       ]
     }, 
