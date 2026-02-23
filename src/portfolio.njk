@@ -52,7 +52,7 @@ title: Portfolio
                     {% if project.links %}
                     <div class="cta-row currently-building-links">
                         {% if project.projectPage and project.projectPage.enabled %}
-                        <a href="/projects/{{ project.slug }}/"><button class="link-button">Project Page</button></a>
+                        <a href="/projects/{{ project.slug }}/"><button class="link-button project-page-button">Project Page</button></a>
                         {% endif %}
                         {% for l in project.links %}
                         <a href="{{ l.url }}" {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
@@ -99,7 +99,7 @@ title: Portfolio
 
             <div class="cta-row">
                 {% if project.projectPage and project.projectPage.enabled %}
-                <a href="/projects/{{ project.slug }}/"><button class="link-button">Project Page</button></a>
+                <a href="/projects/{{ project.slug }}/"><button class="link-button project-page-button">Project Page</button></a>
                 {% endif %}
                 {% if project.links %}
                     {% for l in project.links %}
