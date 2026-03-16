@@ -79,9 +79,16 @@
           ]
         },
         {
+          "type": "text",
+          "title": "Development on the Raspberry Pi Zero 2 W",
+          "body": "After initially developing our project on the Raspberry Pi 5, we decided to port it to the Raspberry Pi Zero 2 W for better power performance, however, the Raspberry Pi Zero's smaller memory and slower operating speeds led to much slower inference and photo capture times. To address this, we kept the SpeciesNet model loaded in memory and replaced the per-capture camera initialization with a persistent subprocess, eliminating cold-start overhead on every motion detection event."
+        },
+        {
           "type": "bullets",
           "title": "My Contributions",
           "items": [
+            "Wrote Bash setup script which installs required packages, enables SPI interface, and installs and activates a systemd service",
+            "Wrote systemd script for automatic software start on boot up and after power loss",
             "Helped design the system state machine and overall software flow",
             "Responsible for motion sensing -> camera capture pipeline",
             "Implemented a systemd service to manage dependencies, start the networking stack on boot, and automatically restart on failure, enabling reliable system bring-up",
