@@ -454,27 +454,6 @@
     ]
   },
   {
-    "slug": "temporary-media-shortcut",
-    "title": "Temporary Media Apple Shortcut",
-    "image": "/images/Shortcut Logo Icon.png",
-    "alt": "Apple Shortcuts logo",
-    "description": "An Apple shortcut to take and send photos and videos that you don't want around forever.",
-    "date": {
-      "start": { "month": 4, "year": 2023 }
-    },
-    "tags": ["Automation", "Productivity"],
-    "projectPage": {
-      "url": "/projects/temporary-media-shortcut.html",
-      "enabled": false
-    },
-    "links": [
-      {
-        "label": "Download Apple Shortcut",
-        "url": "/Download Items/Temporary Media.shortcut"
-      }
-    ]
-  },
-  {
     "slug": "personal-website",
     "title": "Personal Website",
     "image": "/images/website.png",
