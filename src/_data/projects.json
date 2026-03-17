@@ -32,8 +32,7 @@
           "items": [
             "Traditional wildlife cameras store images locally, requiring physical retrieval",
             "Cellular models are expensive and unreliable in remote areas",
-            "Most capture far more useless data than actionable insight",
-            "DuckWild filters at the edge—sending structured data instead of raw images"
+            "Most capture far more useless data than actionable insight"
           ]
         },
         {
@@ -74,7 +73,8 @@
           "title": "Key Technical Decisions",
           "items": [
             "Reimplemented ClusterDuck in Python instead of modifying upstream C++ for maintainability and reuse",
-            "Dropped hardware AI accelerators due to power cost with little benefit for solar operation",
+            "Implemented fault-tolerant control software with watchdog timers and thread health monitoring to automatically detect and recover from failures, with systemd ensuring reliable system bring-up on boot and after power loss",
+            "Dropped hardware AI accelerators due to power cost",
             "Motion-triggered, event-driven inference so AI only runs when needed"
           ]
         },
@@ -93,7 +93,7 @@
             "Responsible for motion sensing -> camera capture pipeline",
             "Implemented a systemd service to manage dependencies, start the networking stack on boot, and automatically restart on failure, enabling reliable system bring-up",
             "Contributed to ClusterDuck packet handling and Raspberry Pi compatibility",
-            "Made power and architecture decisions based on real measurements"
+            "Made power and architecture decisions based on power measurements"
           ]
         },
         {
@@ -106,11 +106,6 @@
             "Long-range field testing with multiple nodes",
             "Public demo video + open-source release"
           ]
-        },
-        {
-          "type": "text",
-          "title": "Why This Project Matters",
-          "body": "DuckWild shows how embedded systems, networking, and AI intersect in the real world. It’s not about maximizing benchmarks—it’s about making technology usable where infrastructure doesn’t exist."
         }
       ]
     },
