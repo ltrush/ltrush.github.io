@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 title: Portfolio
+navSection: portfolio
 ---
 
 <h1 class="page-title">Projects & Proof-of-Concepts</h1>
@@ -27,16 +28,20 @@ title: Portfolio
             {% if project.currentlyBuilding %}
             <div class="project project-wide">
                 <div class="project-media">
-                    <a>
+                    {% if project.projectPage and project.projectPage.enabled %}
+                    <a href="/projects/{{ project.slug }}/">
                         <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
                     </a>
+                    {% else %}
+                    <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+                    {% endif %}
                 </div>
 
                 <div class="project-details">
                     <div class="cta-row currently-building-pill">
                         <span class="pill">Currently building</span>
                     </div>
-                    <p class="project-name">{{ project.title }}</p>
+                    <h3 class="project-name">{{ project.title }}</h3>
                     {% set projectDateText = project | formatProjectDate %}
                     {% if projectDateText %}
                     <p class="project-date">{{ projectDateText }}</p>
@@ -79,12 +84,16 @@ title: Portfolio
     {% for project in sortedProjects %}
     {% if not project.currentlyBuilding %}
     <div class="project">
-        <a>
+        {% if project.projectPage and project.projectPage.enabled %}
+        <a href="/projects/{{ project.slug }}/">
             <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
         </a>
+        {% else %}
+        <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+        {% endif %}
 
         <div class="project-details">
-            <p class="project-name">{{ project.title }}</p>
+            <h3 class="project-name">{{ project.title }}</h3>
             {% set projectDateText = project | formatProjectDate %}
             {% if projectDateText %}
             <p class="project-date">{{ projectDateText }}</p>

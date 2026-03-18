@@ -1,3 +1,25 @@
+// Mobile nav hamburger toggle
+const navToggle = document.getElementById('nav-toggle');
+const navbar = document.getElementById('navbar');
+if (navToggle && navbar) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navbar.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navbar.querySelectorAll('.nav-list a').forEach(link => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!navbar.contains(e.target)) {
+      navbar.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 // Add event listeners to all download buttons
 document.querySelectorAll('.download-button').forEach(button => {
     button.addEventListener('click', event => {
