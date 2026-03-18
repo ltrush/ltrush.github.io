@@ -20,21 +20,24 @@ if (navToggle && navbar) {
   });
 }
 
-// Handle contact form submit via mailto
+// Handle contact form submit via Web3Forms
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
-  contactForm.addEventListener('submit', event => {
-    event.preventDefault();
-    const name = document.getElementById('name')?.value.trim() || 'Website visitor';
-    const email = document.getElementById('email')?.value.trim() || 'No email provided';
-    const message = document.getElementById('message')?.value.trim() || '';
-
-    const subject = `New message from ${name}`;
-    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-    const mailtoLink = `mailto:luketrusheim@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailtoLink;
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(contactForm);
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+    const json = await res.json();
+    const result = document.getElementById('form-result');
+    if (json.success) {
+      result.textContent = "Message sent! I'll get back to you soon.";
+      result.className = 'form-result form-result--success';
+      contactForm.reset();
+    } else {
+      result.textContent = 'Something went wrong. Please try again.';
+      result.className = 'form-result form-result--error';
+    }
   });
 });

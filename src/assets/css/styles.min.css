@@ -785,11 +785,16 @@ img {
   color: var(--accent);
 }
 
-.contact-form-note {
-  color: var(--text-dim);
-  font-size: 0.85rem;
+.form-result {
   font-family: var(--font-mono);
-  margin-bottom: var(--space-xs);
+  font-size: 0.85rem;
+  padding: var(--space-xs) 0;
+}
+.form-result--success {
+  color: #4caf82;
+}
+.form-result--error {
+  color: #e05c5c;
 }
 
 /* === Forms === */
