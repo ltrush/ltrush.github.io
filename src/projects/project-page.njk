@@ -15,9 +15,9 @@ navSection: portfolio
   {% if projectDateText %}
     <p class="project-date">{{ projectDateText }}</p>
   {% endif %}
-  <p class="section-lead">This project page isn’t available yet.</p>
+  <p class="section-lead">This project page isn't available yet.</p>
   <div class="cta-row">
-    <a href="/portfolio/"><button class="link-button">Back to Portfolio</button></a>
+    <a class="btn btn--ghost" href="/portfolio/">Back to Portfolio</a>
   </div>
 
 {% else %}
@@ -49,13 +49,11 @@ navSection: portfolio
       {% endif %}
 
       <div class="cta-row">
-        <a href="/portfolio/"><button class="link-button">Back to Portfolio</button></a>
+        <a class="btn btn--ghost" href="/portfolio/">Back to Portfolio</a>
 
         {% if project.links and project.links.length %}
           {% for l in project.links %}
-            <a href="{{ l.url }}" target="_blank" rel="noreferrer">
-              <button class="link-button">{{ l.label }}</button>
-            </a>
+            <a class="btn btn--ghost" href="{{ l.url }}" target="_blank" rel="noreferrer">{{ l.label }}</a>
           {% endfor %}
         {% endif %}
       </div>
@@ -77,9 +75,9 @@ navSection: portfolio
           </figure>
         {% endif %}
       {% elif hasHeroImageFallback %}
-        <a class="project-page-hero-image">
+        <div class="project-page-hero-image">
           <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
-        </a>
+        </div>
       {% endif %}
 
       {% if hasTopVideos %}
@@ -139,23 +137,25 @@ navSection: portfolio
         </div>
       {% endif %}
 
-      <div class="project-details">
+      <div class="project-content">
 
         {# Render projectPage.sections #}
         {% for section in project.projectPage.sections %}
 
           {% if section.title %}
-            <p class="project-name">{{ section.title }}</p>
+            <h2 class="section-heading">{{ section.title }}</h2>
           {% endif %}
 
           {% if section.type == "text" %}
             {% if section.body %}
-              <p class="project-description">{{ section.body }}</p>
+              <div class="content-section">
+                <p>{{ section.body }}</p>
+              </div>
             {% endif %}
 
           {% elif section.type == "bullets" %}
             {% if section.items and section.items.length %}
-              <ul class="project-description">
+              <ul class="content-list">
                 {% for item in section.items %}
                   <li>{{ item }}</li>
                 {% endfor %}
@@ -164,11 +164,12 @@ navSection: portfolio
 
           {% elif section.type == "keyValue" %}
             {% if section.items and section.items.length %}
-              <div class="project-description">
+              <dl class="spec-grid">
                 {% for kv in section.items %}
-                  <p><strong>{{ kv.label }}:</strong> {{ kv.value }}</p>
+                  <dt>{{ kv.label }}</dt>
+                  <dd>{{ kv.value }}</dd>
                 {% endfor %}
-              </div>
+              </dl>
             {% endif %}
 
           {% elif section.type == "gallery" %}
