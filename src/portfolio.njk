@@ -4,6 +4,8 @@ title: Portfolio
 navSection: portfolio
 ---
 
+{% from "macros/project-card.njk" import projectCard %}
+
 <h1 class="page-title">Projects & Proof-of-Concepts</h1>
 <p class="section-lead">Some of my passion projects, extracurricular activities, and classwork. Anything that I'm proud of goes here!</p>
 
@@ -23,51 +25,10 @@ navSection: portfolio
         </div>
     </div>
 
-    <div class="portfolio currently-building-list">
+    <div class="portfolio portfolio--building">
         {% for project in sortedProjects %}
             {% if project.currentlyBuilding %}
-            <div class="project project-wide">
-                <div class="project-media">
-                    {% if project.projectPage and project.projectPage.enabled %}
-                    <a href="/projects/{{ project.slug }}/">
-                        <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
-                    </a>
-                    {% else %}
-                    <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
-                    {% endif %}
-                </div>
-
-                <div class="project-details">
-                    <div class="cta-row currently-building-pill">
-                        <span class="pill">Currently building</span>
-                    </div>
-                    <h3 class="project-name">{{ project.title }}</h3>
-                    {% set projectDateText = project | formatProjectDate %}
-                    {% if projectDateText %}
-                    <p class="project-date">{{ projectDateText }}</p>
-                    {% endif %}
-                    <p class="project-description">{{ project.description }}</p>
-
-                    <div class="project-tags">
-                        {% for tag in project.tags %}
-                        <span class="tag">{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-
-                    {% if project.links %}
-                    <div class="cta-row currently-building-links">
-                        {% if project.projectPage and project.projectPage.enabled %}
-                        <a href="/projects/{{ project.slug }}/"><button class="link-button project-page-button">Project Page</button></a>
-                        {% endif %}
-                        {% for l in project.links %}
-                        <a href="{{ l.url }}" {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
-                            <button class="link-button">{{ l.label }}</button>
-                        </a>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
+                {{ projectCard(project, wide=true) }}
             {% endif %}
         {% endfor %}
     </div>
@@ -83,43 +44,7 @@ navSection: portfolio
 <div class="portfolio">
     {% for project in sortedProjects %}
     {% if not project.currentlyBuilding %}
-    <div class="project">
-        {% if project.projectPage and project.projectPage.enabled %}
-        <a href="/projects/{{ project.slug }}/">
-            <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
-        </a>
-        {% else %}
-        <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
-        {% endif %}
-
-        <div class="project-details">
-            <h3 class="project-name">{{ project.title }}</h3>
-            {% set projectDateText = project | formatProjectDate %}
-            {% if projectDateText %}
-            <p class="project-date">{{ projectDateText }}</p>
-            {% endif %}
-            <p class="project-description">{{ project.description }}</p>
-
-            <div class="project-tags">
-                {% for tag in project.tags %}
-                <span class="tag">{{ tag }}</span>
-                {% endfor %}
-            </div>
-
-            <div class="cta-row">
-                {% if project.projectPage and project.projectPage.enabled %}
-                <a href="/projects/{{ project.slug }}/"><button class="link-button project-page-button">Project Page</button></a>
-                {% endif %}
-                {% if project.links %}
-                    {% for l in project.links %}
-                    <a href="{{ l.url }}" {% if l.newTab %}target="_blank" rel="noreferrer"{% endif %}>
-                        <button class="link-button">{{ l.label }}</button>
-                    </a>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
+        {{ projectCard(project) }}
     {% endif %}
     {% endfor %}
 </div>
