@@ -2,6 +2,7 @@ _site/
 node_modules/
 docs/site-structure.md
 .DS_Store
+*/.DS_Store
 CLAUDE.md
 .vscode
 .claude
