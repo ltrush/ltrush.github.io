@@ -57,7 +57,7 @@
   {
     "slug": "nzxt-wireless-rgb",
     "title": "Wireless RGB Lighting Control System",
-    "image": "/images/nzxt-wireless-rgb.png",
+    "image": "/images/nzxt.png",
     "alt": "Wireless BLE RGB lighting control system prototype inside a PC case",
     "description": "Designed and implemented a BLE-based wireless RGB lighting control system during an internship at NZXT, coordinating two RGB peripherals from a single central controller while investigating EMI/RFI performance inside a PC enclosure.",
     "date": {
