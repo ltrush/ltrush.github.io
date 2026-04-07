@@ -1,5 +1,60 @@
 [
   {
+    "slug": "secret-keeper-driver",
+    "title": "/dev/secret: Minix Character Device Driver",
+    "image": "/images/secret_keeper.png",
+    "alt": "Minix driver working",
+    "description": "A character device driver for Minix 3 that provides secure, owner-gated secret storage between processes, written entirely in C against the kernel driver framework.",
+    "tags": ["C", "Minix", "OS", "Device Driver", "Kernel"],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/ltrush/minix-secret-keeper-driver", "newTab": true }
+    ],
+    "date": { "start": { "month": 3, "year": 2026 } },
+    "projectPage": {
+      "enabled": true,
+      "sections": [
+        {
+          "type": "text",
+          "title": "Overview",
+          "body": "Implemented a character device driver for Minix 3 that exposes a /dev/secret interface for storing and retrieving a secret between processes. The device enforces ownership: only one user can hold the secret at a time, and only the owner can read it. Ownership can be transferred to another user via an ioctl call. The driver integrates with the Minix System Event Framework (SEF) and preserves its full state across live update events."
+        },
+        {
+          "type": "keyValue",
+          "title": "Tech Stack",
+          "items": [
+            { "label": "Language", "value": "C (C89, ACK compiler)" },
+            { "label": "OS", "value": "Minix 3.1.8" },
+            { "label": "Framework", "value": "Minix SEF (System Event Framework)" },
+            { "label": "IPC", "value": "sys_safecopyto / sys_safecopyfrom" }
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "What I Built",
+          "items": [
+            "Full character device driver registered with the Minix kernel via mknod and /etc/system.conf",
+            "open() logic enforcing single-writer, owner-gated-reader access with proper EACCES and ENOSPC error codes",
+            "Read/write transfer handlers using sys_safecopyto and sys_safecopyfrom for cross-process memory access",
+            "Open file descriptor tracking to correctly trigger secret reset only after a read fd has been opened and all fds are closed",
+            "SSGRANT ioctl handler allowing the secret owner to transfer ownership to another uid",
+            "Live update state save and restore using ds_publish_mem and ds_retrieve_mem",
+            "Custom ioctl header (ioc_secret.h) wired into the Minix include tree"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "The Reset Logic",
+          "body": "The trickiest part of the driver was getting the secret reset condition right. The secret should persist after the writer closes their file descriptor, so another process can come along and read it. But once any read file descriptor has been opened, the secret should wipe itself when the last fd closes. That required tracking not just an open count, but whether a read fd had ever been opened during the current ownership. Getting the ordering of those state transitions correct took the most careful thought of anything in the project."
+        },
+        {
+          "type": "text",
+          "title": "What I Learned",
+          "body": "This project gave me a concrete feel for what it means to work below the filesystem. You cannot use normal libc IO, you cannot seek, and when a user process hands you a buffer address it is a virtual address in their address space, not yours. The kernel has to mediate every byte transfer, which is what sys_safecopyto and sys_safecopyfrom are for. That constraint also forced me to treat the secret as raw bytes rather than a string, since there is no guarantee the contents are null-terminated or printable. More broadly, the project gave me exposure to how a real OS structures its driver framework, how services register and communicate, and how live updates can be supported without losing state."
+        }
+      ]
+    }
+  },
+  {
     "slug": "nzxt-wireless-rgb",
     "title": "Wireless RGB Lighting Control System",
     "image": "/images/nzxt-wireless-rgb.png",
