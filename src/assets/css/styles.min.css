@@ -41,7 +41,8 @@ body {
   padding: 0;
   font-family: var(--font-sans);
   overflow-x: hidden;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   color: var(--text);
   text-align: left;
   line-height: 1.6;
@@ -350,11 +351,26 @@ img {
   display: block;
 }
 
+/* === Entrance animation === */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-inner > * {
+  animation: fade-up 0.5s ease both;
+}
+
+.welcome-inner > *:nth-child(1) { animation-delay: 0.05s; }
+.welcome-inner > *:nth-child(2) { animation-delay: 0.15s; }
+.welcome-inner > *:nth-child(3) { animation-delay: 0.25s; }
+.welcome-inner > *:nth-child(4) { animation-delay: 0.35s; }
+
 /* === Hero / Welcome === */
 .welcome-section {
   border-left: 2px solid var(--accent);
   padding: var(--space-xl) var(--space-xl);
-  background: var(--surface);
+  background: radial-gradient(ellipse 70% 100% at 0% 50%, rgba(240, 160, 64, 0.13), transparent), var(--surface);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
   border-top: 1px solid var(--border);
   border-right: 1px solid var(--border);
@@ -426,6 +442,7 @@ img {
 .project:hover {
   border-color: var(--border-accent);
   transform: translateY(-3px);
+  box-shadow: 0 0 0 1px var(--border-accent), 0 8px 24px rgba(240, 160, 64, 0.08);
 }
 
 .project img {
@@ -1042,7 +1059,8 @@ textarea:focus {
 
 /* === Reduced motion === */
 @media (prefers-reduced-motion: reduce) {
-  .building-badge::before {
+  .building-badge::before,
+  .welcome-inner > * {
     animation: none;
   }
 
