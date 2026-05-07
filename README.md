@@ -243,3 +243,4 @@ Fields:
 - Project pages are generated for every project via `src/projects/project-page.njk`, but if `projectPage.enabled` is false the page shows a “not available yet” message.
 - Portfolio ordering is reverse chronological based on `date.start`.
 - Portfolio cards use a responsive grid (3 columns desktop, then 2, then 1) and keep automatic card height sizing.
+- Images have a ratio of around 1.78 or I think 1280/720? Should be double checked but thats what my screenshot measurements told me

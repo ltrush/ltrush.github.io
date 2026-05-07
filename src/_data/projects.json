@@ -1,5 +1,83 @@
 [
   {
+    "slug": "p2p-direction-finder",
+    "title": "Peer-to-Peer Direction-Finding Compass Device",
+    "image": "/images/compass.jpg",
+    "alt": "minecraft compass",
+    "description": "A handheld device that uses LoRa mesh networking and GPS to point you toward your friends in crowded, infrastructure-free environments like music festivals.",
+    "date": {
+      "start": { "month": 1, "year": 2026 },
+      "present": true
+    },
+    "tags": [
+      "Embedded Systems",
+      "ESP32",
+      "LoRa",
+      "Mesh Networking",
+      "Sensor Fusion",
+      "Senior Project"
+    ],
+    "currentlyBuilding": true,
+    "projectPage": {
+      "enabled": true,
+      "sections": [
+        {
+          "type": "text",
+          "title": "Project Overview",
+          "body": "A senior capstone project building a handheld device that helps people find each other in crowded, off-grid environments like outdoor music festivals. Each person carries a unit that forms a LoRa mesh network with other units, shares GPS coordinates, and drives a LED ring compass that physically points toward a selected friend. No Wi-Fi or cell service required."
+        },
+        {
+          "type": "keyValue",
+          "title": "Planned System Architecture",
+          "items": [
+            {
+              "label": "Platform",
+              "value": "Heltec Wireless Tracker V1.0 (ESP32 + LoRa radio + GNSS receiver)"
+            },
+            {
+              "label": "Mesh networking",
+              "value": "LoRa via the Meshtastic protocol for peer-to-peer coordinate sharing"
+            },
+            {
+              "label": "Navigation",
+              "value": "Haversine bearing calculation from GPS coordinates, magnetometer/IMU for device heading"
+            },
+            {
+              "label": "Heading sensor",
+              "value": "LSM303 or ICM-20948 (magnetometer + IMU), with hard/soft iron calibration and tilt compensation"
+            },
+            {
+              "label": "UI",
+              "value": "LED ring compass indicating direction to target device"
+            },
+            {
+              "label": "Target accuracy",
+              "value": "2-5 meters using GNSS with SBAS/WAAS correction"
+            }
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "Technical Scope",
+          "items": [
+            "Embedded firmware on ESP32 in C/C++ using the Arduino framework",
+            "LoRa mesh networking with Meshtastic for decentralized coordinate exchange",
+            "GNSS integration for sub-3m positioning",
+            "Magnetometer calibration and tilt compensation for accurate heading",
+            "Sensor fusion using Kalman filtering for position averaging",
+            "I2C and SPI peripheral integration for IMU and LED driver",
+            "Hardware bring-up from pin diagrams and datasheets"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Current Status",
+          "body": "The project is in early hardware bring-up and sensor integration. My teammate and I are working through component selection and initial board setup on the Heltec platform. This page will be updated as the system comes together."
+        }
+      ]
+    }
+  },
+  {
     "slug": "secret-keeper-driver",
     "title": "/dev/secret: Minix Character Device Driver",
     "image": "/images/secret_keeper.png",
@@ -7,7 +85,11 @@
     "description": "A character device driver for Minix 3 that provides secure, owner-gated secret storage between processes, written entirely in C against the kernel driver framework.",
     "tags": ["C", "Minix", "OS", "Device Driver", "Kernel"],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/ltrush/minix-secret-keeper-driver", "newTab": true }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/ltrush/minix-secret-keeper-driver",
+        "newTab": true
+      }
     ],
     "date": { "start": { "month": 3, "year": 2026 } },
     "projectPage": {
@@ -24,7 +106,10 @@
           "items": [
             { "label": "Language", "value": "C (C89, ACK compiler)" },
             { "label": "OS", "value": "Minix 3.1.8" },
-            { "label": "Framework", "value": "Minix SEF (System Event Framework)" },
+            {
+              "label": "Framework",
+              "value": "Minix SEF (System Event Framework)"
+            },
             { "label": "IPC", "value": "sys_safecopyto / sys_safecopyfrom" }
           ]
         },
@@ -198,7 +283,7 @@
     "description": "A low-power wildlife monitoring system that uses on-device computer vision and a LoRa mesh network to detect and identify animals without relying on cellular or Wi-Fi connectivity.",
     "date": {
       "start": { "month": 9, "year": 2025 },
-      "present": true
+      "end": { "month": 3, "year": 2026 }
     },
     "tags": [
       "Embedded Systems",
@@ -208,7 +293,7 @@
       "LoRaWAN",
       "Raspberry Pi"
     ],
-    "currentlyBuilding": true,
+    "currentlyBuilding": false,
     "projectPage": {
       "enabled": true,
       "sections": [
