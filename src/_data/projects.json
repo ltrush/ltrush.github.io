@@ -3,8 +3,8 @@
     "slug": "p2p-direction-finder",
     "title": "Peer-to-Peer Direction-Finding Compass Device",
     "image": "/images/compass.jpg",
-    "alt": "minecraft compass",
-    "description": "A handheld device that uses LoRa mesh networking and GPS to point you toward your friends in crowded, infrastructure-free environments like music festivals.",
+    "alt": "TODO: image alt text",
+    "description": "A handheld device that uses LoRa radio and GPS to point you toward your friend in crowded, infrastructure-free environments like music festivals. Custom FreeRTOS firmware on ESP32-S3.",
     "date": {
       "start": { "month": 1, "year": 2026 },
       "present": true
@@ -12,8 +12,8 @@
     "tags": [
       "Embedded Systems",
       "ESP32",
+      "FreeRTOS",
       "LoRa",
-      "Mesh Networking",
       "Sensor Fusion",
       "Senior Project"
     ],
@@ -24,55 +24,51 @@
         {
           "type": "text",
           "title": "Project Overview",
-          "body": "A senior capstone project building a handheld device that helps people find each other in crowded, off-grid environments like outdoor music festivals. Each person carries a unit that forms a LoRa mesh network with other units, shares GPS coordinates, and drives a LED ring compass that physically points toward a selected friend. No Wi-Fi or cell service required."
+          "body": "A senior capstone project building a pair of handheld devices that point toward each other in crowded, off-grid environments like outdoor music festivals. Each unit has a GPS receiver, magnetometer/IMU, LoRa radio, and LED display. The two devices periodically broadcast their GPS coordinates over LoRa, compute the bearing and distance to each other, and display a directional arrow on screen that updates in real time as the user turns. No Wi-Fi or cell service required."
+        },
+        {
+          "type": "text",
+          "title": "Why Not Meshtastic",
+          "body": "The project originally planned to use Meshtastic for LoRa communication, but we dropped it early on. Meshtastic is a monolithic firmware, and its module API didn't give us enough control over the system to drive our own display and navigation logic. We also realized that mesh networking is overkill for a two-device prototype: point-to-point LoRa communication is simpler, lower overhead, and sufficient to prove the concept. Going custom also gave us the opportunity to design the firmware from scratch on FreeRTOS, which is something we wanted to explore."
         },
         {
           "type": "keyValue",
-          "title": "Planned System Architecture",
+          "title": "Hardware",
           "items": [
             {
               "label": "Platform",
-              "value": "Heltec Wireless Tracker V1.0 (ESP32 + LoRa radio + GNSS receiver)"
-            },
-            {
-              "label": "Mesh networking",
-              "value": "LoRa via the Meshtastic protocol for peer-to-peer coordinate sharing"
-            },
-            {
-              "label": "Navigation",
-              "value": "Haversine bearing calculation from GPS coordinates, magnetometer/IMU for device heading"
+              "value": "Heltec Wireless Tracker V1.1 (ESP32-S3 + SX1262 LoRa + UC6580 GNSS + LED, all integrated)"
             },
             {
               "label": "Heading sensor",
-              "value": "LSM303 or ICM-20948 (magnetometer + IMU), with hard/soft iron calibration and tilt compensation"
-            },
-            {
-              "label": "UI",
-              "value": "LED ring compass indicating direction to target device"
+              "value": "External ICM-20948 IMU breakout over I2C, mounted away from the board to minimize magnetic interference"
             },
             {
               "label": "Target accuracy",
-              "value": "2-5 meters using GNSS with SBAS/WAAS correction"
+              "value": "2-5 meter GPS positioning (open sky), heading within ~5° after calibration"
             }
           ]
+        },
+        {
+          "type": "text",
+          "title": "Firmware Architecture",
+          "body": "The firmware runs on FreeRTOS across both ESP32-S3 cores, with three tasks communicating through queues. Core 0 runs the radio task: it handles LoRa TX/RX via RadioLib using interrupt-driven async receive and broadcasts the device's GPS position every 3 seconds. Isolating radio on its own core ensures that multi-millisecond SPI transactions during packet TX never stall the display. Core 1 runs the navigation and display task at 20 Hz: it reads the IMU over I2C, gets a stable heading, computes bearing and distance from the latest positions, and renders the compass arrow and distance readout to the LED. GPS parsing also runs on Core 1, continuously feeding UART bytes from the UC6580 into TinyGPSPlus and pushing new fixes into a FreeRTOS queue. Inter-task communication uses xQueueOverwrite on single-item queues so the nav task always reads the most recent GPS and partner position without blocking."
         },
         {
           "type": "bullets",
           "title": "Technical Scope",
           "items": [
-            "Embedded firmware on ESP32 in C/C++ using the Arduino framework",
-            "LoRa mesh networking with Meshtastic for decentralized coordinate exchange",
-            "GNSS integration for sub-3m positioning",
-            "Magnetometer calibration and tilt compensation for accurate heading",
-            "Sensor fusion using Kalman filtering for position averaging",
-            "I2C and SPI peripheral integration for IMU and LED driver",
-            "Hardware bring-up from pin diagrams and datasheets"
+            "Custom FreeRTOS firmware on ESP32-S3 with multi-core task architecture",
+            "Point-to-point LoRa communication via RadioLib (SX1262)",
+            "GNSS integration with TinyGPSPlus for 1 Hz position fixes",
+            "I2C peripheral integration for IMU, SPI for LoRa radio, UART for GPS",
+            "LED compass UI rendering at 20 Hz via U8g2"
           ]
         },
         {
           "type": "text",
           "title": "Current Status",
-          "body": "The project is in early hardware bring-up and sensor integration. My teammate and I are working through component selection and initial board setup on the Heltec platform. This page will be updated as the system comes together."
+          "body": "The project is not yet complete! GPS is working on the Heltec board, and the FreeRTOS task architecture is being built. Next steps are LoRa communication between the two units, IMU integration and magnetometer calibration, and the compass display. This page will be updated as the system comes together."
         }
       ]
     }
