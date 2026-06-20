@@ -30,6 +30,12 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Fetch latest resume PDF
+        run: |
+          mkdir -p src/assets
+          curl -fL -o src/assets/Luke_Trusheim_Resume.pdf \
+            https://raw.githubusercontent.com/ltrush/resume/main/dist/Luke_Trusheim_Resume.pdf
+
       - name: Build
         run: npm run build
 
