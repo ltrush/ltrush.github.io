@@ -1,13 +1,13 @@
 [
   {
     "slug": "p2p-direction-finder",
-    "title": "Peer-to-Peer Direction-Finding Compass Device",
+    "title": "BuddyFinder: Peer-to-Peer LoRa Direction-Finding Compass",
     "image": "/images/compass.jpg",
-    "alt": "TODO: image alt text",
-    "description": "A handheld device that uses LoRa radio and GPS to point you toward your friend in crowded, infrastructure-free environments like music festivals. Custom FreeRTOS firmware on ESP32-S3.",
+    "alt": "TODO: image alt text (consider swapping in Figure 4.4 from the report, the actual compass UI rendered on the TFT)",
+    "description": "A pair of handheld devices that point at each other over LoRa in crowded, off-grid environments like music festivals. Custom dual-core FreeRTOS firmware on ESP32-S3, no phone or cell service required.",
     "date": {
       "start": { "month": 1, "year": 2026 },
-      "present": true
+      "end": { "month": 6, "year": 2026 }
     },
     "tags": [
       "Embedded Systems",
@@ -17,19 +17,18 @@
       "Sensor Fusion",
       "Senior Project"
     ],
-    "currentlyBuilding": true,
     "projectPage": {
       "enabled": true,
       "sections": [
         {
           "type": "text",
           "title": "Project Overview",
-          "body": "A senior capstone project building a pair of handheld devices that point toward each other in crowded, off-grid environments like outdoor music festivals. Each unit has a GPS receiver, magnetometer/IMU, LoRa radio, and LED display. The two devices periodically broadcast their GPS coordinates over LoRa, compute the bearing and distance to each other, and display a directional arrow on screen that updates in real time as the user turns. No Wi-Fi or cell service required."
+          "body": "Senior project which involved building a pair of handheld devices that point at each other in crowded, off-grid environments like outdoor music festivals. Each unit acquires its own position from a GNSS receiver, broadcasts it over 915 MHz LoRa every 3 seconds, and renders a live compass on a small TFT display showing distance and bearing to the paired buddy. An external IMU provides absolute heading so the arrow tracks the buddy in the world frame regardless of how the device is held. No Wi-Fi, cell service, or internet required."
         },
         {
           "type": "text",
           "title": "Why Not Meshtastic",
-          "body": "The project originally planned to use Meshtastic for LoRa communication, but we dropped it early on. Meshtastic is a monolithic firmware, and its module API didn't give us enough control over the system to drive our own display and navigation logic. We also realized that mesh networking is overkill for a two-device prototype: point-to-point LoRa communication is simpler, lower overhead, and sufficient to prove the concept. Going custom also gave us the opportunity to design the firmware from scratch on FreeRTOS, which is something we wanted to explore."
+          "body": "We considered Meshtastic and ultimately rejected it. Meshtastic is monolithic firmware, meaning it controls the display, the radio stack, and the UI, and only allows for custom firmware through a module API. Building our own compass and navigation logic on top of it would have meant incorporating our firmware with an large, unfamiliar codebase. We also determined that mesh routing wasn't necessary for two-device prototype. Going custom let us use FreeRTOS the way we wanted to and engage seriously with real-time design questions like ISR vs. task work, lock-free data sharing, and core pinning. Multi-peer support is left as future work, layered on top of a design we fully understand."
         },
         {
           "type": "keyValue",
@@ -37,38 +36,63 @@
           "items": [
             {
               "label": "Platform",
-              "value": "Heltec Wireless Tracker V1.1 (ESP32-S3 + SX1262 LoRa + UC6580 GNSS + LED, all integrated)"
+              "value": "Heltec Wireless Tracker V1.1: ESP32-S3FN8 dual-core MCU, SX1262 LoRa transceiver, UC6580 GNSS, and ST7735 TFT display integrated on one board"
             },
             {
               "label": "Heading sensor",
-              "value": "External ICM-20948 IMU breakout over I2C, mounted away from the board to minimize magnetic interference"
+              "value": "Adafruit BNO055 9-DOF IMU on a dedicated I2C bus, outputs absolute orientation via onboard sensor fusion so the ESP32 does no fusion math itself"
             },
             {
-              "label": "Target accuracy",
-              "value": "2-5 meter GPS positioning (open sky), heading within ~5° after calibration"
+              "label": "Display",
+              "value": "ST7735 TFT (160 x 80) on its own SPI bus, so LoRa and display SPI never contend at the hardware level"
             }
           ]
         },
         {
           "type": "text",
           "title": "Firmware Architecture",
-          "body": "The firmware runs on FreeRTOS across both ESP32-S3 cores, with three tasks communicating through queues. Core 0 runs the radio task: it handles LoRa TX/RX via RadioLib using interrupt-driven async receive and broadcasts the device's GPS position every 3 seconds. Isolating radio on its own core ensures that multi-millisecond SPI transactions during packet TX never stall the display. Core 1 runs the navigation and display task at 20 Hz: it reads the IMU over I2C, gets a stable heading, computes bearing and distance from the latest positions, and renders the compass arrow and distance readout to the LED. GPS parsing also runs on Core 1, continuously feeding UART bytes from the UC6580 into TinyGPSPlus and pushing new fixes into a FreeRTOS queue. Inter-task communication uses xQueueOverwrite on single-item queues so the nav task always reads the most recent GPS and partner position without blocking."
+          "body": "Firmware is C++ on FreeRTOS, split across the ESP32-S3's two cores. A Radio task is pinned to Core 0 and fully owns the SX1262: an interrupt sets a flag, the task polls the flag every 20 ms, performs the SPI read in task context, parses the payload, and writes the buddy's GPS fix into a queue. It also wakes every 3 seconds to broadcast the local fix. Core 1 runs the Navigation task at high priority on a 50 ms cadence (20 Hz) using vTaskDelayUntil. Core 1 also runs another task at idle priority which drains the GPS UART byte-by-byte into TinyGPSPlus. The Radio task uses RadioLib's blocking transmit() call, but pinning it to its own core means the blocking SPI wait never stalls navigation or display work on Core 1."
+        },
+        {
+          "type": "text",
+          "title": "Inter-Task Communication",
+          "body": "Two size-1 FreeRTOS queues (ownFixQueue and peerFixQueue) connect the tasks, used with xQueueOverwrite and xQueuePeek. This gives a lock-free latest-value pattern, meaning writers overwrite old fixes and peekers read without consuming. There are no mutexes and no risk of a slow consumer holding up the rest of the system, which is exactly what we want for real-time direction-finding. If a new GPS fix arrives mid-computation, the next 20 Hz tick will pick it up. The Navigation task also enforces a 10-second peer-loss timeout, flipping the display to a 'no peer' state rather than continuing to point at a stale position."
+        },
+        {
+          "type": "text",
+          "title": "Navigation Math and Display",
+          "body": "Each Navigation tick peeks both GPS fix queues, reads the BNO055 for the current absolute heading, and computes great-circle distance and initial bearing between the two coordinate pairs using haversine and bearing formulas. Subtracting device heading from world-frame bearing gives the arrow direction in the device's local frame, which is what gets rendered. Using a fused-orientation IMU rather than a bare magnetometer removed the need for additional calibration and computation in firmware."
         },
         {
           "type": "bullets",
           "title": "Technical Scope",
           "items": [
-            "Custom FreeRTOS firmware on ESP32-S3 with multi-core task architecture",
-            "Point-to-point LoRa communication via RadioLib (SX1262)",
-            "GNSS integration with TinyGPSPlus for 1 Hz position fixes",
-            "I2C peripheral integration for IMU, SPI for LoRa radio, UART for GPS",
-            "LED compass UI rendering at 20 Hz via U8g2"
+            "Custom dual-core FreeRTOS firmware on ESP32-S3",
+            "Point-to-point 915 MHz LoRa via RadioLib (SX1262), interrupt-driven receive with SPI reads",
+            "GNSS integration via TinyGPSPlus, continuous UART drain at 115200 baud",
+            "Lock-free latest-value inter-task communication using size-1 FreeRTOS queues",
+            "Compass UI rendered at 20 Hz on a 160 x 80 ST7735 TFT over dedicated SPI",
+            "BNO055 absolute-orientation IMU on a separate I2C bus, heading consumed directly by the nav task"
+          ]
+        },
+        {
+          "type": "bullets",
+          "title": "Testing and Validation",
+          "items": [
+            "GPS accuracy: stationary unit at a known reference point produced consistent fixes with no observable drift",
+            "LoRa link range: outdoor walk test maintained a stable link at festival-relevant distances; longer-range characterization left as future work",
+            "Compass correctness: rotated the local unit through a series of known headings with the peer fixed and verified the arrow counter-rotated to keep pointing at the buddy in the world frame"
           ]
         },
         {
           "type": "text",
-          "title": "Current Status",
-          "body": "The project is not yet complete! GPS is working on the Heltec board, and the FreeRTOS task architecture is being built. Next steps are LoRa communication between the two units, IMU integration and magnetometer calibration, and the compass display. This page will be updated as the system comes together."
+          "title": "What I Learned",
+          "body": "I enjoyed thinking about the high-level architecture and breaking the project down into its sub-pieces. I liked thinking about what data needed to be shared, how long it should persist, and how to design something that was efficient and easy to understand. Testing the individual components and then integrating them was satisfying. I also learned a lot about the challenges of building on top of a large open-source project like Meshtastic, which is what pushed us toward a custom firmware stack in the first place. This was also my first major FreeRTOS project. I'd worked with it on smaller class projects, but BuddyFinder was the first time I actually got to apply what I'd learned: task design, queue-based communication, core pinning, and the trade-offs between blocking and non-blocking APIs."
+        },
+        {
+          "type": "text",
+          "title": "What I'd Do Next",
+          "body": "The clearest next step is multi-peer: a hardware button to cycle through a small set of buddies, eventually layered into a real routing protocol. After that, power management is the obvious gap, since the current firmware makes no effort to sleep between activity, and switching from RadioLib's blocking transmit() to interrupt-driven startTransmit() would close the small receive outage that happens during each TX. Beyond firmware, a proper enclosure with antenna routing and an integrated battery is the next physical step; the current prototypes are bare boards on breadboards."
         }
       ]
     }
