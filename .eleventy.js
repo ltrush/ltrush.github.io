@@ -31,14 +31,11 @@ function structuredDateToSortKey(dateValue) {
   if (!dateValue || typeof dateValue !== "object") return null;
   const start = normalizeMonthYear(dateValue.start);
   const end = normalizeMonthYear(dateValue.end);
-  const present = Boolean(dateValue.present);
-
-  if (start) {
-    return start.year * 100 + (start.month || 1);
-  }
-  if (present) return 999912;
   if (end) {
     return end.year * 100 + (end.month || 12);
+  }
+  if (start) {
+    return start.year * 100 + (start.month || 1);
   }
   return null;
 }
