@@ -2,7 +2,7 @@
   {
     "slug": "p2p-direction-finder",
     "title": "BuddyFinder: Peer-to-Peer LoRa Direction-Finding Compass",
-    "image": "/images/compass.jpg",
+    "image": "/images/compass/compass-ui.jpg",
     "alt": "TODO: image alt text (consider swapping in Figure 4.4 from the report, the actual compass UI rendered on the TFT)",
     "description": "A pair of handheld devices that point at each other over LoRa in crowded, off-grid environments like music festivals. Custom dual-core FreeRTOS firmware on ESP32-S3, no phone or cell service required.",
     "date": {
@@ -14,7 +14,6 @@
       "ESP32",
       "FreeRTOS",
       "LoRa",
-      "Sensor Fusion",
       "Senior Project"
     ],
     "projectPage": {
@@ -47,6 +46,22 @@
               "value": "ST7735 TFT (160 x 80) on its own SPI bus, so LoRa and display SPI never contend at the hardware level"
             }
           ]
+        },
+        {
+            "type": "gallery",
+            "title": "System Diagrams",
+            "images": [
+              {
+                "src": "/images/compass/architecture.png",
+                "alt": "Block diagram of the BuddyFinder system: two units linked over 915 MHz LoRa, each with an ESP32-S3 driving an SX1262 radio, BNO055 IMU, UC6580 GNSS receiver, and ST7735 TFT display",
+                "caption": "System block diagram for a pair of BuddyFinder units, with the LoRa RF link between them."
+              },
+              {
+                "src": "/images/compass/pin_assignments.svg",
+                "alt": "Annotated pinout of the Heltec Wireless Tracker V1.1, with GPIOs color-coded by peripheral: LoRa SPI, GNSS UART, IMU I2C, TFT SPI, and shared control lines",
+                "caption": "Heltec Wireless Tracker V1.1 pin assignments, color-coded by peripheral."
+              }
+            ]
         },
         {
           "type": "text",
