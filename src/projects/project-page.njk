@@ -67,7 +67,15 @@ navSection: portfolio
         {% if heroMediaSrc %}
           <figure class="project-page-hero-figure">
             <div class="project-page-hero-figure-media">
-              <img class="project-image" src="{{ heroMediaSrc }}" alt="{{ heroMedia.alt or project.alt or project.title }}">
+              <button
+                class="project-image-trigger"
+                type="button"
+                data-lightbox-trigger
+                data-lightbox-src="{{ heroMediaSrc }}"
+                data-lightbox-alt="{{ heroMedia.alt or project.alt or project.title }}"
+                {% if heroMedia.caption %}data-lightbox-caption="{{ heroMedia.caption }}"{% endif %}>
+                <img class="project-image" src="{{ heroMediaSrc }}" alt="{{ heroMedia.alt or project.alt or project.title }}">
+              </button>
             </div>
             {% if heroMedia.caption %}
               <figcaption class="image-caption project-gallery-caption">{{ heroMedia.caption }}</figcaption>
@@ -76,7 +84,14 @@ navSection: portfolio
         {% endif %}
       {% elif hasHeroImageFallback %}
         <div class="project-page-hero-image">
-          <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+          <button
+            class="project-image-trigger"
+            type="button"
+            data-lightbox-trigger
+            data-lightbox-src="{{ project.image }}"
+            data-lightbox-alt="{{ project.alt or project.title }}">
+            <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+          </button>
         </div>
       {% endif %}
 
@@ -126,7 +141,15 @@ navSection: portfolio
               {% set mediaSrc = media.src or media.url or media.image or media %}
               {% if mediaSrc %}
                 <figure class="project-gallery-item">
-                  <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or project.alt or project.title }}">
+                  <button
+                    class="project-image-trigger"
+                    type="button"
+                    data-lightbox-trigger
+                    data-lightbox-src="{{ mediaSrc }}"
+                    data-lightbox-alt="{{ media.alt or project.alt or project.title }}"
+                    {% if media.caption %}data-lightbox-caption="{{ media.caption }}"{% endif %}>
+                    <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or project.alt or project.title }}">
+                  </button>
                   {% if media.caption %}
                     <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
                   {% endif %}
@@ -179,7 +202,15 @@ navSection: portfolio
                   {% set mediaSrc = media.src or media.url or media.image or media %}
                   {% if mediaSrc %}
                     <figure class="project-gallery-item">
-                      <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or section.title or project.title }}">
+                      <button
+                        class="project-image-trigger"
+                        type="button"
+                        data-lightbox-trigger
+                        data-lightbox-src="{{ mediaSrc }}"
+                        data-lightbox-alt="{{ media.alt or section.title or project.title }}"
+                        {% if media.caption %}data-lightbox-caption="{{ media.caption }}"{% endif %}>
+                        <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or section.title or project.title }}">
+                      </button>
                       {% if media.caption %}
                         <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
                       {% endif %}

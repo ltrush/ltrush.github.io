@@ -20,6 +20,14 @@
 
 	{% include "footer.njk" %}
 
+	<div class="lightbox" id="project-image-lightbox" hidden aria-hidden="true">
+	  <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded project image">
+		<button class="lightbox-close" id="project-image-lightbox-close" type="button" aria-label="Close expanded image">X</button>
+		<img class="lightbox-image" id="project-image-lightbox-image" src="" alt="">
+		<p class="lightbox-caption" id="project-image-lightbox-caption" hidden></p>
+	  </div>
+	</div>
+
 	<script src="/assets/js/scripts.js"></script>
   </body>
 </html>

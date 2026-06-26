@@ -20,8 +20,10 @@ if (navToggle && navbar) {
   });
 }
 
-// Handle contact form submit via Web3Forms
 document.addEventListener('DOMContentLoaded', () => {
+  initProjectImageLightbox();
+
+  // Handle contact form submit via Web3Forms
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
@@ -41,3 +43,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function initProjectImageLightbox() {
+  const triggers = document.querySelectorAll('[data-lightbox-trigger]');
+  const lightbox = document.getElementById('project-image-lightbox');
+  const lightboxImage = document.getElementById('project-image-lightbox-image');
+  const lightboxCaption = document.getElementById('project-image-lightbox-caption');
+  const lightboxClose = document.getElementById('project-image-lightbox-close');
+
+  if (!lightbox || !lightboxImage || !lightboxCaption || !lightboxClose) {
+    return;
+  }
+
+  let activeTrigger = null;
+
+  const closeLightbox = () => {
+    lightbox.hidden = true;
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
+    lightboxImage.src = '';
+    lightboxImage.alt = '';
+    lightboxCaption.textContent = '';
+    lightboxCaption.hidden = true;
+
+    if (activeTrigger) {
+      activeTrigger.focus();
+      activeTrigger = null;
+    }
+  };
+
+  const openLightbox = trigger => {
+    const src = trigger.dataset.lightboxSrc;
+    const alt = trigger.dataset.lightboxAlt || '';
+    const caption = trigger.dataset.lightboxCaption || '';
+
+    if (!src) return;
+
+    activeTrigger = trigger;
+    lightboxImage.src = src;
+    lightboxImage.alt = alt;
+    lightboxCaption.textContent = caption;
+    lightboxCaption.hidden = !caption;
+    lightbox.hidden = false;
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+    lightboxClose.focus();
+  };
+
+  if (triggers.length) {
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => openLightbox(trigger));
+    });
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', event => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !lightbox.hidden) {
+      closeLightbox();
+    }
+  });
+}
