@@ -665,6 +665,10 @@ img {
   font-size: 0.95rem;
 }
 
+.content-section p + p {
+  margin-top: var(--space-sm);
+}
+
 .content-list {
   list-style: none;
   padding: 0;
