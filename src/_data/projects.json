@@ -427,7 +427,6 @@
     },
     "tags": ["STM32", "DMA", "SPI", "I2C", "Firmware/Hardware Debugging"],
     "projectPage": {
-      "url": "/projects/bare-metal-digital-camera.html",
       "enabled": true,
       "sections": [
         {
@@ -459,7 +458,6 @@
     },
     "tags": ["Linux", "C", "Threads"],
     "projectPage": {
-      "url": "/projects/ieee-grid-stabilization.html",
       "enabled": false
     },
     "links": [
@@ -482,7 +480,6 @@
     },
     "tags": ["Robotics", "Artificial intelligence", "Python", "ROS 2"],
     "projectPage": {
-      "url": "/projects/bull-robot.html",
       "enabled": true,
       "sections": [
         {
@@ -564,7 +561,6 @@
     },
     "tags": ["Documentation", "Technical writing"],
     "projectPage": {
-      "url": "/projects/ieee-grid-stabilization.html",
       "enabled": false
     },
     "links": [
@@ -587,7 +583,6 @@
     },
     "tags": ["Python", "C", "Arduino"],
     "projectPage": {
-      "url": "/projects/werc-competition.html",
       "enabled": true,
       "images": [
         {
@@ -644,7 +639,6 @@
     },
     "tags": ["Computer Architecture", "RISC-V", "FPGA", "SystemVerilog"],
     "projectPage": {
-      "url": "/projects/pipelined-riscv.html",
       "enabled": false
     },
     "links": [
@@ -666,7 +660,7 @@
       "end": { "month": 12, "year": 2024 }
     },
     "tags": ["Signal processing", "Python", "MATLAB"],
-    "projectPage": { "url": "/projects/dtmf-decoder.html", "enabled": false },
+    "projectPage": { "enabled": false },
     "links": [
       {
         "label": "Visit Github Repo",
@@ -686,7 +680,6 @@
     },
     "tags": ["Networks", "Protocol design", "UDP", "C"],
     "projectPage": {
-      "url": "/projects/reliable-udp-transfer.html",
       "enabled": true,
       "sections": [
         {
@@ -724,7 +717,6 @@
     },
     "tags": ["Hackathon", "Pitching", "Rapid prototyping"],
     "projectPage": {
-      "url": "/projects/sloinformed-polyhacks.html",
       "enabled": false
     },
     "links": [
@@ -747,7 +739,6 @@
     },
     "tags": ["Entrepreneurship", "Design"],
     "projectPage": {
-      "url": "/projects/customdefinitions.html",
       "enabled": false
     },
     "links": [
@@ -770,9 +761,8 @@
     },
     "tags": ["Web Development", "HTML/CSS/JS", "Node.js", "Eleventy"],
     "projectPage": {
-      "url": "/projects/personal-website.html",
       "enabled": false
     },
-    "links": [{ "label": "Visit Homepage", "url": "/index.html" }]
+    "links": [{ "label": "Visit Homepage", "url": "/" }]
   }
 ]

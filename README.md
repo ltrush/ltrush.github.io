@@ -86,7 +86,6 @@ Year-only (supported):
 
 ### `projectPage` object
 - `projectPage.enabled` (boolean): controls whether the “Project Page” button appears and whether the page renders full content vs “not available yet”
-- `projectPage.url` (string, optional/legacy): may still exist in data, but generated pages use `slug`
 - `projectPage.images` (array, optional): top-of-page image gallery shown before the project details/sections
 - `projectPage.videos` (array, optional): top-of-page video embeds/files shown before the project details/sections
 - `projectPage.sections` (array, optional): content blocks rendered in order on the project page
