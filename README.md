@@ -153,12 +153,24 @@ All section types may include:
 {
   "type": "text",
   "title": "Project Overview",
-  "body": "Short paragraph..."
+  "body": [
+    "First paragraph...",
+    "Second paragraph..."
+  ]
 }
 ```
 
 Fields:
-- `body` (string)
+- `body` (string or array of strings): a single paragraph or multiple paragraphs rendered in order
+
+Single-paragraph form is still supported:
+```json
+{
+  "type": "text",
+  "title": "Project Overview",
+  "body": "Short paragraph..."
+}
+```
 
 #### `bullets` section
 ```json

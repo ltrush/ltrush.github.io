@@ -172,7 +172,15 @@ navSection: portfolio
           {% if section.type == "text" %}
             {% if section.body %}
               <div class="content-section">
-                <p>{{ section.body }}</p>
+                {% if section.body is string %}
+                  <p>{{ section.body }}</p>
+                {% else %}
+                  {% for paragraph in section.body %}
+                    {% if paragraph %}
+                      <p>{{ paragraph }}</p>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
               </div>
             {% endif %}
 
