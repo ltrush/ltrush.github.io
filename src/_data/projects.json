@@ -196,7 +196,7 @@
       "Firmware",
       "Arduino",
       "EMI/RF Measurement",
-      "Hardware Design"
+      "System Design"
     ],
     "projectPage": {
       "enabled": true,
@@ -204,7 +204,7 @@
         {
           "type": "text",
           "title": "Project Overview",
-          "body": "During a summer internship at NZXT, I designed and implemented a proof-of-concept wireless RGB lighting control system using Bluetooth Low Energy (BLE). The system uses a central Arduino Nano 33 BLE to coordinate two independent RGB peripherals—an SK9822 LED strip and a set of NZXT F420 RGB fans—entirely wirelessly, enclosed inside a PC case. In addition to building the prototype, I performed RF measurements to characterize the electromagnetic environment inside the chassis and authored a report recommending next steps for NZXT to evolve the prototype into a manufacturable product."
+          "body": "During a summer internship at NZXT, I designed and implemented a proof-of-concept wireless RGB lighting control system using Bluetooth Low Energy (BLE). The system uses a central Arduino Nano 33 BLE to coordinate two independent RGB peripherals (an SK9822 LED strip and a set of NZXT F420 RGB fans) entirely wirelessly, enclosed inside a PC case. In addition to building the prototype, I performed RF measurements to characterize the electromagnetic environment inside the chassis and authored a report recommending next steps for NZXT to evolve the prototype into a manufacturable product."
         },
         {
           "type": "bullets",
@@ -212,8 +212,7 @@
           "items": [
             "Current NZXT RGB peripherals require wired data connections to the motherboard, occupying headers and adding internal cable clutter",
             "A wireless approach offers increased flexibility and cleaner builds, but PC enclosures are a challenging RF environment",
-            "The metallic case creates a Faraday-cage effect, trapping internal noise from GPUs, PSUs, and other switching components",
-            "No prior internal data existed on how BLE performs in this environment or what interference the wireless system itself introduces"
+            "The metallic case creates a Faraday-cage effect, trapping internal noise from GPUs, PSUs, and other switching components"
           ]
         },
         {
@@ -222,23 +221,19 @@
           "items": [
             {
               "label": "Central Controller",
-              "value": "Arduino Nano 33 BLE (nRF52840) — manages BLE connections, generates RGB frames at 60 FPS, and cycles lighting modes via a button interrupt"
+              "value": "Arduino Nano 33 BLE (nRF52840) that manages BLE connections, generates RGB frames and cycles lighting modes via a button interrupt"
             },
             {
               "label": "Peripheral 1 — LED Strip Controller",
-              "value": "Arduino Nano 33 BLE — receives RGB data and commands over BLE, drives a 100-LED SK9822 strip via SPI with a 3.3V→5V level shifter"
+              "value": "Arduino Nano 33 BLE that receives RGB data and commands over BLE and drives a 100-LED SK9822 strip via SPI with a 3.3V→5V level shifter"
             },
             {
               "label": "Peripheral 2 — UART Bridge",
-              "value": "Arduino Nano 33 BLE — receives BLE data and forwards it over UART to a Raspberry Pi Pico, which generates the WS2812B timing-critical signal for RGB fans"
+              "value": "Arduino Nano 33 BLE that receives BLE data and forwards it over UART to a Raspberry Pi Pico, which generates the WS2812B timing-critical signal for RGB fans"
             },
             {
               "label": "Lighting Modes",
-              "value": "RGB Live (continuous 19 Hz frame streaming) and four command-based presets: Rainbow, Theater Chase, Color Wipe — toggled by a button on the central"
-            },
-            {
-              "label": "RF Measurement",
-              "value": "nRF52840 USB Dongle + RSSI Viewer, scanning all 40 BLE channels at 10 ms intervals — tested across four positions inside and outside the case"
+              "value": "RGB Live (continuous 19 Hz frame streaming) and four command-based presets (Rainbow, Theater Chase, Color Wipe) which can be toggled by a button on the central"
             }
           ]
         },
@@ -246,8 +241,8 @@
           "type": "bullets",
           "title": "Key Technical Decisions",
           "items": [
-            "Chose SK9822 (SPI-compatible) over WS2812B for the LED strip — the Nano 33 BLE cannot sustain the 800 kHz, 1.25 µs-per-bit WS2812B waveform due to Mbed OS interrupt jitter and slow GPIO (~32 kHz max toggle rate)",
-            "Added a Raspberry Pi Pico as a timing coprocessor for the RGB fans, which require the WS2812B protocol — the Pico generates the precise waveform while the BLE system handles wireless coordination",
+            "Chose SK9822 (SPI-compatible) over WS2812B for the LED strip because reliable WS2812B bit-banging on the Nano 33 BLE is blocked by SoftDevice interrupt preemption, and Arduino doesn't expose the nRF52840 hardware peripherals (PWM+DMA, I2S) that would generate the waveform independently of the CPU",
+            "Added a Raspberry Pi Pico as a timing coprocessor for the RGB fans; the Pico generates the WS2812B waveform deterministically while the Nano handles BLE",
             "Used a star BLE topology over mesh — mesh adds overhead and broadcast complexity that is unnecessary for a PC-scale deployment of 2–3 nodes",
             "Implemented two operational modes — high-bandwidth Live RGB streaming and low-bandwidth command-triggered presets — to trade off flexibility vs. channel occupancy and RFI"
           ]
@@ -256,11 +251,11 @@
           "type": "bullets",
           "title": "RF Measurement Results",
           "items": [
-            "Outside case: avg −91.7 dBm (quietest baseline)",
+            "Outside case: avg −91.7 dBm",
             "3 inches above GPU: avg −85.9 dBm (~6 dB noisier than outside)",
-            "Directly on GPU: avg −83.9 dBm (GPU switching circuitry identified as a major RF noise source)",
+            "Directly on GPU: avg −83.9 dBm (GPU switching circuitry results in more noise)",
             "Above GPU with BLE system active: avg −76.1 dBm (~10 dB increase over idle inside-case measurement)",
-            "Conclusion: the case interior is measurably noisier, and the BLE system itself raises the noise floor — antenna placement and efficient transmission patterns are critical"
+            "Conclusion: the case interior is measurably noisier, and the BLE system itself raises the noise floor. Kind of obvious!"
           ]
         },
         {
@@ -268,9 +263,7 @@
           "title": "Performance Results & Limitations",
           "items": [
             "Achieved ~19 Hz RGB frame delivery to two simultaneous BLE peripherals (vs. ~40 Hz with a single peripheral)",
-            "Connection cap: attempts to add a third peripheral consistently failed (ArduinoBLE / Mbed Cordio enforces a 2–3 connection limit)",
-            "Intermittent ~4-second freezes observed during continuous streaming — traced to ArduinoBLE library thread blocking or Nordic SoftDevice radio calibration cycles, not fixable at the application layer",
-            "Both peripherals fully enclosed inside the PC case during all demonstrations"
+            "Connection cap: attempts to add a third peripheral consistently failed. Nordic's SoftDevice firmware supports more concurrent connections, but ArduinoBLE doesn't expose the configuration to raise the limit"
           ]
         },
         {
@@ -278,11 +271,10 @@
           "title": "What I Did",
           "items": [
             "Designed the full hardware architecture: central controller, two BLE peripherals, level shifters, shared power and ground",
-            "Wrote all firmware: central BLE manager (ble_dual_central.ino), LED strip peripheral (ble_led_strip_display.ino), and UART bridge peripheral (ble_to_uart_bridge.ino)",
-            "Implemented a custom SPI driver for the SK9822 LED strip (BGR color order) and coordinated it with BLE characteristic writes",
+            "Wrote all firmware: central BLE manager, LED strip peripheral, and UART bridge peripheral",
             "Developed the WS2812B coprocessor flow on the Raspberry Pi Pico in CircuitPython, bridged from the UART peripheral",
-            "Performed RF/EMI measurements using the nRF52840 dongle and RSSI Viewer across four test conditions, analyzed results, and drew design implications",
-            "Authored a full technical report covering theoretical analysis, proof of concept, measurement findings, and short/medium/long-term recommendations for NZXT"
+            "Performed RF/EMI measurements using the nRF52840 dongle and RSSI Viewer across four test conditions and analyzed results",
+            "Authored a full technical report covering theoretical analysis and research, proof of concept, measurement findings, and future recommendations for NZXT"
           ]
         },
         {
@@ -293,21 +285,17 @@
             "Medium-term: evaluate Bluetooth Mesh only if scaling beyond a single case; prefer command-triggered presets over streaming to minimize RFI",
             "Long-term: migrate to Nordic DKs or ESP32-class SoCs, integrate antenna placement into case design from the start, and schedule pre-compliance EMC testing (CISPR 32 / EN 55032) early"
           ]
+        },{
+          "type": "text",
+          "title": "Some Lessons and Regrets",
+          "body": [
+            "Ultimately, I am proud of the work that I did this project. However, there are a few decisions I wish I made differently, and a few aspects I wish I prioritized more.", 
+            "Sticking with Arduino's core was the biggest constraint I'd revisit. Arduino's Mbed OS layer and the ArduinoBLE library hid the parts of the chip I needed most. ArduinoBLE / Mbed Cordio capped me at 3 simultaneous connections and didn't expose TX power, connection interval, or other BLE settings. The Nordic SoftDevice layer exposes all of those, which matters for both scaling to more peripherals and for adjusting the RF environment inside the case. Additionally, this would have given me more experience working with lower level software and more opportunities to learn.",
+            "I also wish I had looked into synchronization techniques like packaging an animation start time with the data. One change that would've certainly helped with synchronization would have been to use BLE's connectionless mode. This is where the central stops connecting and instead stuffs the RGB/command bytes into its advertising packets. The LED devices become passive observers (scanners) that read the payload off the air without ever connecting."
+          ]
         }
       ]
-    },
-    "links": [
-      {
-        "label": "View Technical Report",
-        "url": "",
-        "newTab": true
-      },
-      {
-        "label": "View Presentation",
-        "url": "",
-        "newTab": true
-      }
-    ]
+    }
   },
 
   {
