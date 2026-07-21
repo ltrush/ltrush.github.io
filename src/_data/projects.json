@@ -66,7 +66,7 @@
         {
           "type": "text",
           "title": "Firmware Architecture",
-          "body": "Firmware is C++ on FreeRTOS, split across the ESP32-S3's two cores. A Radio task is pinned to Core 0 and fully owns the SX1262: an interrupt sets a flag, the task polls the flag every 20 ms, performs the SPI read in task context, parses the payload, and writes the buddy's GPS fix into a queue. It also wakes every 3 seconds to broadcast the local fix. Core 1 runs the Navigation task at high priority on a 50 ms cadence (20 Hz) using vTaskDelayUntil. Core 1 also runs another task at idle priority which drains the GPS UART byte-by-byte into TinyGPSPlus. The Radio task uses RadioLib's blocking transmit() call, but pinning it to its own core means the blocking SPI wait never stalls navigation or display work on Core 1."
+          "body": "Firmware is C++ on FreeRTOS, split across the ESP32-S3's two cores. A Radio task is pinned to Core 0 and fully owns the SX1262: an interrupt sets a flag, the task polls the flag every 20 ms, performs the SPI read in task context, parses the payload, and writes the buddy's GPS fix into a queue. It also wakes every 3 seconds to broadcast the local fix. Core 1 runs the Navigation task at high priority on a 50 ms cadence (20 Hz) using vTaskDelayUntil. Core 1 also runs another task at idle priority which drains the GPS UART byte-by-byte into TinyGPSPlus. The Radio task uses RadioLib's blocking transmit() call, but pinning it to its own core means the blocking SPI wait never stalls navigation or display work on Core 1. This is crucial because the transmit() call blocks by busy-waiting, so the scheduler can't run anything else."
         },
         {
           "type": "text",
