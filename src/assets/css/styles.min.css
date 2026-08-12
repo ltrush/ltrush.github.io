@@ -365,6 +365,7 @@ img {
 .welcome-inner > *:nth-child(2) { animation-delay: 0.15s; }
 .welcome-inner > *:nth-child(3) { animation-delay: 0.25s; }
 .welcome-inner > *:nth-child(4) { animation-delay: 0.35s; }
+.welcome-inner > *:nth-child(5) { animation-delay: 0.45s; }
 
 /* === Hero / Welcome === */
 .welcome-section {
@@ -1121,6 +1122,12 @@ textarea:focus {
 
   .cta-row.currently-building-pill {
     flex-direction: row;
+    align-items: center;
+  }
+
+  .cta-row.pill-row {
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
   }
 
