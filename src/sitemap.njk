@@ -1,0 +1,16 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in collections.all %}
+{%- set proj = p.data.project %}
+{#- Disabled project pages only render a "not available yet" stub, so keep them out of the index #}
+{%- if (not proj) or (proj.projectPage and proj.projectPage.enabled) %}
+  <url>
+    <loc>{{ p.url | absoluteUrl(site.url) }}</loc>
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>

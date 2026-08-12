@@ -82,6 +82,14 @@ module.exports = function (eleventyConfig) {
     if (!project || typeof project !== "object") return "";
     return formatStructuredDate(project.date);
   });
+  eleventyConfig.addFilter("absoluteUrl", (path, base) => {
+    if (!path || !base) return path || "";
+    try {
+      return new URL(path, base).href;
+    } catch {
+      return path;
+    }
+  });
 
   return {
     dir: { input: "src", output: "_site" },
