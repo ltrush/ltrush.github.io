@@ -24,6 +24,8 @@ npm run build          # production build for the custom domain
 
 ## Deployment
 - Pushes to `main` trigger `.github/workflows/deploy.yml`, which runs the build and deploys `_site/` to GitHub Pages.
+- The workflow also runs on manual dispatch and on a `repository_dispatch` event of type `resume-updated` (sent by the `ltrush/resume` repo).
+- Before building, the workflow downloads the latest resume PDF from `ltrush/resume` into `src/assets/Luke_Trusheim_Resume.pdf`.
 - The `CNAME` file keeps the custom domain configuration intact.
 
 ## Project structure
@@ -50,7 +52,6 @@ npm run build          # production build for the custom domain
 
 ### Date field (single source of truth)
 - `date` (object): used for sorting and display formatting (`Mon. Year`, `Mon. Year - Mon. Year`, `Mon. Year - Present`)
-- Keep `dates` (string) if you want a human-readable reference while editing, but the site now uses `date`
 
 Supported `date` shapes:
 
@@ -252,6 +253,6 @@ Fields:
 
 ### Notes / behavior
 - Project pages are generated for every project via `src/projects/project-page.njk`, but if `projectPage.enabled` is false the page shows a “not available yet” message.
-- Portfolio ordering is reverse chronological based on `date.start`.
+- Portfolio ordering is reverse chronological, sorted by `date.end` when one exists, falling back to `date.start`. Note: `present: true` is ignored by sorting, so ongoing projects sort by their start date (ties broken alphabetically by title). A year-only `end` sorts as December of that year; a year-only `start` sorts as January.
 - Portfolio cards use a responsive grid (3 columns desktop, then 2, then 1) and keep automatic card height sizing.
-- Images have a ratio of around 1.78 or I think 1280/720? Should be double checked but thats what my screenshot measurements told me
+- Image aspect ratios (set in `styles.min.css`): standard portfolio card images and video frames are `16 / 9` (1.78, i.e. 1280x720); project-page gallery images are `16 / 10`. Exceptions: wide "Currently building" card images have no fixed ratio (they stretch to fill the card height via `.project-media img { aspect-ratio: unset }`), and single-image project-page heroes are height-clamped with `object-fit: cover` rather than ratio-locked — check the relevant selectors before cropping artwork.
