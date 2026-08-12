@@ -41,10 +41,10 @@
 <div class="project">
   {% if project.projectPage and project.projectPage.enabled %}
   <a href="/projects/{{ project.slug }}/">
-    <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+    <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}" loading="lazy" decoding="async">
   </a>
   {% else %}
-  <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+  <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}" loading="lazy" decoding="async">
   {% endif %}
   <div class="project-details">
     <h3 class="project-name">{{ project.title }}</h3>

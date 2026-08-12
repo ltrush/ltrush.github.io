@@ -149,7 +149,7 @@ navSection: portfolio
                     data-lightbox-src="{{ mediaSrc }}"
                     data-lightbox-alt="{{ media.alt or project.alt or project.title }}"
                     {% if media.caption %}data-lightbox-caption="{{ media.caption }}"{% endif %}>
-                    <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or project.alt or project.title }}">
+                    <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or project.alt or project.title }}" loading="lazy" decoding="async">
                   </button>
                   {% if media.caption %}
                     <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>
@@ -218,7 +218,7 @@ navSection: portfolio
                         data-lightbox-src="{{ mediaSrc }}"
                         data-lightbox-alt="{{ media.alt or section.title or project.title }}"
                         {% if media.caption %}data-lightbox-caption="{{ media.caption }}"{% endif %}>
-                        <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or section.title or project.title }}">
+                        <img class="project-image" src="{{ mediaSrc }}" alt="{{ media.alt or section.title or project.title }}" loading="lazy" decoding="async">
                       </button>
                       {% if media.caption %}
                         <figcaption class="image-caption project-gallery-caption">{{ media.caption }}</figcaption>

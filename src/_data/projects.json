@@ -286,7 +286,7 @@
   {
     "slug": "nzxt-wireless-rgb",
     "title": "Wireless RGB Lighting Control System",
-    "image": "/images/nzxt.png",
+    "image": "/images/nzxt.webp",
     "alt": "Wireless BLE RGB lighting control system prototype inside a PC case",
     "description": "Designed and implemented a BLE-based wireless RGB lighting control system during an internship at NZXT, coordinating two RGB peripherals from a single central controller while investigating EMI/RFI performance inside a PC enclosure.",
     "date": {
@@ -529,7 +529,7 @@
   {
     "slug": "bare-metal-digital-camera",
     "title": "Bare Metal Digital Camera",
-    "image": "/images/camera-flowchart.png",
+    "image": "/images/camera-flowchart.webp",
     "alt": "Flowchart for digital camera firmware",
     "description": "Built a STM32-based digital camera by integrating camera, LCD screen, and SD card storage.",
     "date": {
@@ -561,7 +561,7 @@
   {
     "slug": "lwp-library",
     "title": "Lightweight Process Library",
-    "image": "/images/thread-process-meme.png",
+    "image": "/images/thread-process-meme.webp",
     "alt": "Meme about Linux threads and processes",
     "description": "A small user‑level threading library written in C with a round‑robin scheduler.",
     "date": {
@@ -685,7 +685,7 @@
   {
     "slug": "werc-competition",
     "title": "2025 WERC Environmental Engineering Competition",
-    "image": "/images/werc/group_photo.jpeg",
+    "image": "/images/werc/group_photo.webp",
     "alt": "Group photo",
     "description": "A proof-of-concept solution to stabilize grid operations using green hydrogen technology.",
     "date": {
@@ -697,17 +697,17 @@
       "enabled": true,
       "images": [
         {
-          "src": "/images/werc/group_photo.jpeg",
+          "src": "/images/werc/group_photo.webp",
           "alt": "Group photo",
           "caption": "Team photo!"
         },
         {
-          "src": "/images/werc/benchscale.jpeg",
+          "src": "/images/werc/benchscale.webp",
           "alt": "Benchscale",
           "caption": "Benchscale (solar panel not pictured)"
         },
         {
-          "src": "/images/werc/trophy.jpeg",
+          "src": "/images/werc/trophy.webp",
           "alt": "First place trophy",
           "caption": "First place trophy 🏆"
         }
@@ -741,7 +741,7 @@
   {
     "slug": "pipelined-riscv",
     "title": "Pipelined and Cached RISC-V Processor",
-    "image": "/images/Pipelined RISCV Otter.png",
+    "image": "/images/pipelined-riscv-otter.webp",
     "alt": "RISCV Otter diagram",
     "description": "A five-stage, pipelined and cached MCU capable of handling data/control hazards by stalling, forwarding, and flushing.",
     "date": {
@@ -820,8 +820,8 @@
   {
     "slug": "sloinformed-polyhacks",
     "title": "Camp Polyhacks 2025 / SLOinformed",
-    "image": "/images/SLOinformeddemo.gif",
-    "alt": "Me at the Hackathon",
+    "image": "/images/sloinformed-demo.webp",
+    "alt": "SLOinformed app screen showing a personalized local news feed for San Luis Obispo",
     "description": "A weekend long hackathon where our group presented an app to improve civic engagement in SLO. We won an award for best pitch!",
     "date": {
       "start": { "month": 3, "year": 2025 }
@@ -841,7 +841,7 @@
   {
     "slug": "customdefinitions-etsy-shop",
     "title": "CustomDefinitions Etsy Shop",
-    "image": "/images/customdefinitions logo.png",
+    "image": "/images/customdefinitions-logo.webp",
     "alt": "CustomDefinitions logo",
     "description": "A digital shop where I sell custom-made wall decor.",
     "date": {
@@ -863,7 +863,7 @@
   {
     "slug": "personal-website",
     "title": "Personal Website",
-    "image": "/images/website.png",
+    "image": "/images/website.webp",
     "alt": "Image representing a website",
     "description": "A website built using HTML, CSS, and JavaScript.",
     "date": {
