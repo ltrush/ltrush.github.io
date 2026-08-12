@@ -40,7 +40,7 @@ npm run build          # production build for the custom domain
 ### Common project fields
 - `slug` (string): used for project page routes (`/projects/<slug>/`)
 - `title` (string): project title shown on cards and project page
-- `image` (string): default image path (used on portfolio cards and as fallback on project page)
+- `image` (string): default image path (used on portfolio cards and as fallback on project page). Commit images at any size/format — the build optimizes them automatically (see Notes below).
 - `alt` (string): image alt text
 - `description` (string): short summary used in portfolio + project page header
 - `tags` (array of strings): badge tags
@@ -253,6 +253,8 @@ Fields:
   - `videos` (array): same item format as `projectPage.videos`
 
 ### Notes / behavior
+- Every `<img>` in the built HTML is optimized at build time by `@11ty/eleventy-img`: converted to WebP, capped at 1600px wide, and given `width`/`height` attributes (SVGs pass through untouched). Source files in `src/images/` can be committed at any size or format — no manual resizing or conversion needed. Videos (`cardVideo`, native `<video>`) are not transformed; keep those web-sized (H.264 MP4).
+- The build fails with a clear error if `projects.json` references an image or video path that doesn't exist under `src/` — a typo'd or placeholder path can't reach the live site.
 - Project pages are generated for every project via `src/projects/project-page.njk`, but if `projectPage.enabled` is false the page shows a “not available yet” message.
 - Portfolio ordering is reverse chronological, sorted by `date.end` when one exists, falling back to `date.start`. Note: `present: true` is ignored by sorting, so ongoing projects sort by their start date (ties broken alphabetically by title). A year-only `end` sorts as December of that year; a year-only `start` sorts as January.
 - Portfolio cards use a responsive grid (3 columns desktop, then 2, then 1) and keep automatic card height sizing.
