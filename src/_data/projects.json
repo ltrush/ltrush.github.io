@@ -821,7 +821,8 @@
     "slug": "sloinformed-polyhacks",
     "title": "Camp Polyhacks 2025 / SLOinformed",
     "image": "/images/sloinformed-demo.webp",
-    "alt": "SLOinformed app screen showing a personalized local news feed for San Luis Obispo",
+    "cardVideo": "/images/sloinformed-demo.mp4",
+    "alt": "SLOinformed app demo cycling through sign-up, interest selection, a personalized local news feed, and upcoming events",
     "description": "A weekend long hackathon where our group presented an app to improve civic engagement in SLO. We won an award for best pitch!",
     "date": {
       "start": { "month": 3, "year": 2025 }

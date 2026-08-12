@@ -445,7 +445,8 @@ img {
   box-shadow: 0 0 0 1px var(--border-accent), 0 8px 24px rgba(240, 160, 64, 0.08);
 }
 
-.project img {
+.project img,
+.project video {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
@@ -480,7 +481,8 @@ img {
   border: 1px solid var(--border);
 }
 
-.project-media img {
+.project-media img,
+.project-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;

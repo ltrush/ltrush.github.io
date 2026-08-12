@@ -1,13 +1,24 @@
+{% macro cardMedia(project, lazy=false) %}
+{% if project.cardVideo %}
+<video
+  class="project-image"
+  src="{{ project.cardVideo }}"
+  poster="{{ project.image }}"
+  aria-label="{{ project.alt or project.title }}"
+  autoplay muted loop playsinline preload="metadata"></video>
+{% else %}
+<img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}"{% if lazy %} loading="lazy" decoding="async"{% endif %}>
+{% endif %}
+{% endmacro %}
+
 {% macro projectCard(project, wide=false) %}
 {% if wide %}
 <div class="project project--wide">
   <div class="project-media">
     {% if project.projectPage and project.projectPage.enabled %}
-    <a href="/projects/{{ project.slug }}/">
-      <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
-    </a>
+    <a href="/projects/{{ project.slug }}/">{{ cardMedia(project) }}</a>
     {% else %}
-    <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}">
+    {{ cardMedia(project) }}
     {% endif %}
   </div>
   <div class="project-details">
@@ -40,11 +51,9 @@
 {% else %}
 <div class="project">
   {% if project.projectPage and project.projectPage.enabled %}
-  <a href="/projects/{{ project.slug }}/">
-    <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}" loading="lazy" decoding="async">
-  </a>
+  <a href="/projects/{{ project.slug }}/">{{ cardMedia(project, lazy=true) }}</a>
   {% else %}
-  <img class="project-image" src="{{ project.image }}" alt="{{ project.alt or project.title }}" loading="lazy" decoding="async">
+  {{ cardMedia(project, lazy=true) }}
   {% endif %}
   <div class="project-details">
     <h3 class="project-name">{{ project.title }}</h3>

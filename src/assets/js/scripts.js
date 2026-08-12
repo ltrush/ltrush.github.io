@@ -23,6 +23,14 @@ if (navToggle && navbar) {
 document.addEventListener('DOMContentLoaded', () => {
   initProjectImageLightbox();
 
+  // Stop autoplaying card videos for users who prefer reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(video => {
+      video.removeAttribute('autoplay');
+      video.pause();
+    });
+  }
+
   // Handle contact form submit via Web3Forms
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;

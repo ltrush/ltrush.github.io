@@ -45,6 +45,7 @@ npm run build          # production build for the custom domain
 - `description` (string): short summary used in portfolio + project page header
 - `tags` (array of strings): badge tags
 - `currentlyBuilding` (boolean, optional): if `true`, project appears in the “Currently building” section
+- `cardVideo` (string, optional): path to a muted looping video shown in place of the card image on the portfolio (the `image` becomes its poster frame; paused automatically for reduced-motion users)
 - `links` (array, optional): CTA buttons shown on portfolio/project page
   - `label` (string)
   - `url` (string)
