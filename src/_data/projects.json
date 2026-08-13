@@ -15,7 +15,11 @@
     ],
     "currentlyBuilding": true,
     "links": [
-      { "label": "App Store", "url": "https://apps.apple.com/us/app/playtennismarin/id6792872050", "newTab": true },
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/playtennismarin/id6792872050",
+        "newTab": true
+      },
       {
         "label": "Website",
         "url": "https://playtennismarin.com",
@@ -38,8 +42,8 @@
           "type": "bullets",
           "title": "What I Did",
           "items": [
-            "Worked with my mom to understand how she actually runs the league, then built around that instead of around what seemed technically cleanest. She handles payments by hand, so the app writes new enrollments to a simple spreadsheet.",
-            "Designed the app. One green, one accent color, Montserrat throughout, and a fixed set of design tokens everything pulls from. Every selector uses the same card component so the app feels consistent. There are no default iOS dropdowns or date pickers anywhere in the flow.",
+            "Worked with my mom to understand how she actually runs the league and where here process can be improved (and where it cannot). I then built around that instead of around what seemed technically cleanest. She handles payments by hand, so the app writes new enrollments to a simple spreadsheet.",
+            "Designed the app. I have always been interested in graphic design so this part was very fun. I used one main green color, one accent color, Montserrat throughout, and a fixed set of design \"atoms\" that are reused across the app. This way the app feels consistent and changes are easy to make. There are no default iOS components anywhere in the app which makes the app feel custom and cohesive.",
             "Made decisions based on who uses it. Most players are older adults enrolling once or twice a year on their phone. That's why there are tooltips on the confusing fields, plain explanations of skill levels, and support for large text sizes without the layout breaking.",
             "Tested it with real people. I sent TestFlight builds to my mom and her friends and fixed what they got stuck on.",
             "Created a premium feel by adding a loading screen with a bouncing tennis ball and a score submission screen that shows a gold scorecard that shifts as you tilt the phone.",
@@ -50,19 +54,10 @@
         },
         {
           "type": "text",
-          "title": "Working With AI",
-          "body": [
-            "I use one context for planning and a separate coding agent for the actual work. I think through the problem first, write a specific prompt with the constraints spelled out, and hand that off. I pick a stronger model for architecture and debugging and a cheaper one for straightforward implementation.",
-            "Managing context turned out to be most of it. I keep a CLAUDE.md file in the repo with the architecture, design tokens, and the reasoning behind decisions that would look like mistakes without it. It also has a list of things that were tried, didn't work on a real device, and shouldn't be tried again. Without that, an agent starting fresh will confidently undo work you did weeks ago.",
-            "The other thing is knowing when not to take the answer. AI tools are often confident about outdated library versions, and they'll add a dependency rather than say a problem doesn't need one. A few of the harder bugs got solved because the first explanation didn't match what I was seeing on the phone and I kept pushing."
-          ]
-        },
-        {
-          "type": "text",
           "title": "How It Works",
           "body": [
-            "A React Native app talks to an Express backend. There's no database. Session info lives in Airtable, which my mom edits directly, and completed enrollments get written back there for her to work from.",
-            "Apple Pay enrollments finish on the server rather than on the phone. The app requests a payment intent, and a webhook completes the enrollment after the charge goes through, so someone who loses signal partway still ends up enrolled with a confirmation email. If the app can't reach live data it falls back to the last good response, and then to a baseline shipped with the backend, so it never just fails to load."
+            "A React Native app sends and receives data to and from an Express backend. There's no database. Session info is sent to Airtable, which my mom edits directly, and completed enrollments get written back there for her to work from.",
+            "Apple Pay enrollments finish on the server rather than on the phone. The app requests a payment intent, and a Stripe webhook completes the enrollment after the charge goes through, so someone who loses signal partway still ends up enrolled with a confirmation email. If the app can't reach live data it falls back to the last good response, and then to a baseline shipped with the backend, so it never just fails to load."
           ]
         },
         {
@@ -75,11 +70,11 @@
             },
             {
               "label": "Backend",
-              "value": "Node.js / Express on Railway, no database"
+              "value": "Node.js / Express on Railway"
             },
             {
               "label": "Payments",
-              "value": "Stripe with Apple Pay, plus a Venmo option"
+              "value": "Stripe, plus a Venmo/Zelle option"
             },
             {
               "label": "Data",
@@ -90,8 +85,8 @@
               "value": "Resend, with SPF / DKIM / DMARC set up"
             },
             {
-              "label": "Monitoring",
-              "value": "Sentry, errors only, no personal data"
+              "label": "Error Monitoring",
+              "value": "Sentry"
             },
             {
               "label": "Distribution",
@@ -107,8 +102,27 @@
           "type": "text",
           "title": "What I Learned",
           "body": [
-            "Most of my time went to things that weren't code. Which payment options a doubles pair actually needs. Whether a confirmation email asking for a Venmo payment reads as a scam to someone who wasn't expecting it. What a player sees if the network drops during payment. Whether the buttons still work with large text turned on.",
-            "I also ended up in a lot of areas I hadn't touched before: DNS records, email deliverability, API rate limits, staging environments, App Store review. None of it was familiar going in, and getting up to speed on unfamiliar things quickly ended up mattering more than knowing any one of them well."
+            "Most of my time went to things that weren't code but rather design-based like whether a confirmation email asking for a Venmo payment reads as a scam or if the app is clear and easy to use for an older user base.",
+            "Could I code an app from scratch by myself? Absolutely no way. This project mostly taught me how to use an agentic coding tool efficiently and effectively. I learned how to manage context windows, choose the appropriate model, and oversee multiple agents.",
+            "I also ended up learning a lot about DNS records, email deliverability, API rate limits, and staging environments."
+          ]
+        },
+        {
+          "type": "keyValue",
+          "title": "Some Concepts and Terms I Learned",
+          "items": [
+            {
+              "label": "Webhook",
+              "value": "A webhook is triggered by a specific action in an application which will send the event details in a packet to an \"endpoint\" which is provided by the receiving app. The receiving app processes the information however it sees fit, and then sends back an acknowledgement."
+            },
+            {
+              "label": "API Keys and Secrets",
+              "value": "An API key is a sequence of characters you send with a request that proves you are who you claim to be."
+            },
+            {
+              "label": "SPF / DKIM / DMARC",
+              "value": "SPF is a list of servers allowed to send email on your domain. DKIM attaches a signature to the email which the receiver verifies with a public key. DMARC verifies that SPF or DKIM passed and that the domain that passed matches the one in the From address, then enforces a policy on what happens when it doesn't."
+            }
           ]
         }
       ]
